@@ -34,7 +34,7 @@ const videos: Record<string, Pick<Course, 'videoId' | 'videoTitle' | 'theme'>> =
   'trigonometrie-calcul': { videoId:'7sDnyXH23pc', videoTitle:'Trigonométrie — cours et exercices, partie 2', theme:'Trigonométrie & fonctions' },
   'trigonometrie-equations': { videoId:'37TxRh12rLw', videoTitle:'Équations et inéquations trigonométriques', theme:'Trigonométrie & fonctions' },
   'fonctions': { videoId:'YF1_lfDpDOk', videoTitle:'Généralités sur les fonctions — partie 1', theme:'Trigonométrie & fonctions' },
-  'transformations-plan': { videoId:'7lZNSm5CLHo', videoTitle:'Transformations du plan — correction d’exercices', theme:'Géométrie du plan' },
+  'transformations-plan': { videoId:'plEl_QEB-Io', videoTitle:'Transformations du plan — exercice guidé', theme:'Géométrie du plan' },
   'produit-scalaire': { videoId:'qsndM7MXcJc', videoTitle:'Produit scalaire — partie 1', theme:'Géométrie du plan' },
   'geometrie-espace': { videoId:'B0BsNv7zDXo', videoTitle:'La géométrie dans l’espace — partie 1', theme:'Géométrie dans l’espace & données' },
   'statistiques': { videoId:'j7fQuVMXIe0', videoTitle:'Cours sur les statistiques — séance 1', theme:'Géométrie dans l’espace & données' },
