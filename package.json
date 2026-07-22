@@ -5,20 +5,27 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "npm run build && node server.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --test",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "typescript": "latest",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
   },
   "devDependencies": {
     "@eslint/js": "latest",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
