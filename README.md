@@ -21,7 +21,8 @@ npm run preview -- --host 127.0.0.1
 ## Contenu du premier draft
 
 - 15 chapitres structurés en deux semestres : ensembles, arithmétique, vecteurs, projection, ordre, droite, polynômes, équations/inéquations/systèmes, trigonométrie I & II, fonctions, transformations, produit scalaire, géométrie de l’espace, statistiques.
-- Chaque chapitre comprend un lien YouTube de recherche précis (`youtube.com/results?search_query=…`) pour éviter de recommander ou d’inventer des vidéos fixes sans validation pédagogique.
+- Chaque chapitre comprend une **vidéo YouTube intégrée**, sélectionnée selon le titre et la description de cours « Tronc Commun / TCS Maroc » trouvés publiquement, avec un lien direct pour l’ouvrir sur YouTube. La sélection pédagogique finale reste à valider par un enseignant.
+- Le programme est aussi regroupé par compétences : fondations, algèbre, géométrie du plan, trigonométrie/fonctions, puis espace/données.
 - Tableau de bord, parcours, lecteur de chapitre, étapes à cocher et quiz de validation.
 - Suivi local : chapitres terminés, étapes, scores de quiz, XP, niveau, séries, focus de 15 minutes et reprise automatique.
 - Révision espacée simple : les chapitres partiellement étudiés ou ayant le score le plus faible remontent dans « Révision ».
