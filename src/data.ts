@@ -1,10 +1,10 @@
 export type Course = {
   id: string; order: number; semester: 1 | 2; title: string; short: string; duration: number;
-  objective: string; prerequisite: string; concepts: string[]; lessons: string[]; videoUrl: string;
+  objective: string; prerequisite: string; concepts: string[]; lessons: string[];
+  videoUrl: string; videoId: string; videoTitle: string; theme: string;
 }
 
-const yt = (query: string) => `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
-const raw: Omit<Course, 'order' | 'videoUrl'>[] = [
+const raw: Omit<Course, 'order' | 'videoUrl' | 'videoId' | 'videoTitle' | 'theme'>[] = [
   { id:'ensembles-nombres', semester:1, title:'Ensembles de nombres', short:'N, Z, D, Q et R', duration:55, objective:'Reconnaître, représenter et comparer les ensembles de nombres.', prerequisite:'Aucun — point de départ', concepts:['Appartenance et inclusion','Intervalles de R','Réunion et intersection','Valeur absolue et distance'], lessons:['Les ensembles N, Z, D, Q, R','Intervalles et droite graduée','Opérations sur les ensembles','Synthèse et quiz'] },
   { id:'arithmetique-n', semester:1, title:'Arithmétique dans N', short:'Divisibilité et nombres premiers', duration:70, objective:'Maîtriser division euclidienne, PGCD et nombres premiers.', prerequisite:'Ensembles de nombres', concepts:['Divisibilité','Division euclidienne','PGCD et PPCM','Décomposition en facteurs premiers'], lessons:['Multiples et diviseurs','Division euclidienne','PGCD et algorithme d’Euclide','Exercices guidés'] },
   { id:'calcul-vectoriel', semester:1, title:'Calcul vectoriel dans le plan', short:'Vecteurs et colinéarité', duration:75, objective:'Calculer avec des vecteurs et établir la colinéarité.', prerequisite:'Repérage du collège', concepts:['Égalité de vecteurs','Somme de vecteurs','Relation de Chasles','Colinéarité'], lessons:['Notion de vecteur','Somme et produit par un réel','Coordonnées','Colinéarité'] },
@@ -22,9 +22,31 @@ const raw: Omit<Course, 'order' | 'videoUrl'>[] = [
   { id:'statistiques', semester:2, title:'Statistiques', short:'Séries et dispersion', duration:60, objective:'Résumer et interpréter une série statistique.', prerequisite:'Calcul numérique', concepts:['Effectifs et fréquences','Moyenne et médiane','Quartiles','Écart-type'], lessons:['Organiser les données','Indicateurs de position','Dispersion','Interprétation'] }
 ]
 
+const videos: Record<string, Pick<Course, 'videoId' | 'videoTitle' | 'theme'>> = {
+  'ensembles-nombres': { videoId:'g7rftsj2t8Y', videoTitle:'Cours 1 — Ensembles des nombres / exercices corrigés', theme:'Fondations & raisonnement' },
+  'arithmetique-n': { videoId:'E6ej1J1Cu70', videoTitle:'Arithmétique dans N — Partie 1', theme:'Fondations & raisonnement' },
+  'calcul-vectoriel': { videoId:'QTP2iJuTxtU', videoTitle:'Calcul vectoriel dans le plan — cours', theme:'Géométrie du plan' },
+  'projection-plan': { videoId:'ZLJr_nXc4aM', videoTitle:'La projection dans le plan — résumé', theme:'Géométrie du plan' },
+  'ordre-r': { videoId:'ePWzj1Oqhds', videoTitle:'Ordre dans R — leçon complète', theme:'Fondations & raisonnement' },
+  'droite-plan': { videoId:'Gcqa4ULYFJ8', videoTitle:'La droite dans le plan — résumé complet', theme:'Géométrie du plan' },
+  'polynomes': { videoId:'jCMMjkxl3R0', videoTitle:'Polynômes — cours complet', theme:'Algèbre & résolution' },
+  'equations-systemes': { videoId:'ZWzFp3EEyRc', videoTitle:'Équations, inéquations et systèmes', theme:'Algèbre & résolution' },
+  'trigonometrie-calcul': { videoId:'7sDnyXH23pc', videoTitle:'Trigonométrie — cours et exercices, partie 2', theme:'Trigonométrie & fonctions' },
+  'trigonometrie-equations': { videoId:'37TxRh12rLw', videoTitle:'Équations et inéquations trigonométriques', theme:'Trigonométrie & fonctions' },
+  'fonctions': { videoId:'YF1_lfDpDOk', videoTitle:'Généralités sur les fonctions — partie 1', theme:'Trigonométrie & fonctions' },
+  'transformations-plan': { videoId:'7lZNSm5CLHo', videoTitle:'Transformations du plan — correction d’exercices', theme:'Géométrie du plan' },
+  'produit-scalaire': { videoId:'qsndM7MXcJc', videoTitle:'Produit scalaire — partie 1', theme:'Géométrie du plan' },
+  'geometrie-espace': { videoId:'B0BsNv7zDXo', videoTitle:'La géométrie dans l’espace — partie 1', theme:'Géométrie dans l’espace & données' },
+  'statistiques': { videoId:'j7fQuVMXIe0', videoTitle:'Cours sur les statistiques — séance 1', theme:'Géométrie dans l’espace & données' },
+}
+
 export const courses: Course[] = raw.map((course, index) => ({
-  ...course, order:index + 1,
-  videoUrl: yt(`${course.title} Tronc Commun Sciences Maroc mathématiques cours français`)
+  ...course,
+  ...videos[course.id],
+  order:index + 1,
+  videoUrl: `https://www.youtube.com/watch?v=${videos[course.id].videoId}`,
 }))
+
+export const themes = ['Fondations & raisonnement', 'Algèbre & résolution', 'Géométrie du plan', 'Trigonométrie & fonctions', 'Géométrie dans l’espace & données']
 
 export const getCourse = (id: string) => courses.find(course => course.id === id) ?? courses[0]
