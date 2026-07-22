@@ -8,7 +8,7 @@ import { timingSafeEqual } from 'node:crypto'
 const here = dirname(fileURLToPath(import.meta.url))
 const catalog = JSON.parse(readFileSync(join(here, 'shared/exercises.json'), 'utf8'))
 const exercises = new Map(catalog.map(exercise => [`${exercise.courseId}:${exercise.id}`, exercise]))
-const allowedTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'application/pdf'])
+const allowedTypes = new Set(['image/jpeg', 'image/png', 'image/webp'])
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const MAX_ANSWER_LENGTH = 20_000
 
@@ -89,15 +89,21 @@ function createLimiter({ max = 10, windowMs = 15 * 60 * 1000 } = {}) {
 function validateCorrection(body, file) {
   const courseId = cleanString(body?.courseId, 'Chapitre', { max: 100 })
   const exerciseId = cleanString(body?.exerciseId, 'Exercice', { max: 120 })
-  const answerText = cleanString(body?.answerText, 'La réponse', { max: MAX_ANSWER_LENGTH })
+  const answerText = cleanString(body?.answerText, 'La réponse', { max: MAX_ANSWER_LENGTH, required: false })
   const exercise = exercises.get(`${courseId}:${exerciseId}`)
   if (!exercise) throw new Error('Chapitre ou exercice inconnu.')
   let attachment = null
   if (file) {
-    if (!allowedTypes.has(file.mimetype)) throw new Error('Format de pièce jointe refusé. Utilise JPG, PNG, WebP ou PDF.')
+    if (!allowedTypes.has(file.mimetype)) throw new Error('Format de pièce jointe refusé. Utilise JPG, PNG ou WebP.')
     if (file.size > MAX_FILE_SIZE) throw new Error('La pièce jointe dépasse 5 Mo.')
-    attachment = { name: basename(file.originalname).replace(/[\x00-\x1f\x7f]/g, '').slice(0, 200) || 'fichier', mimetype: file.mimetype, size: file.size }
+    attachment = {
+      name: basename(file.originalname).replace(/[\x00-\x1f\x7f]/g, '').slice(0, 200) || 'photo',
+      mimetype: file.mimetype,
+      size: file.size,
+      imageDataUrl: `data:${file.mimetype};base64,${file.buffer.toString('base64')}`,
+    }
   }
+  if (!answerText && !attachment) throw new Error('Écris une réponse ou ajoute une photo de ta copie.')
   return { courseId, exercise, answerText, attachment }
 }
 
@@ -116,14 +122,15 @@ function parseFeedback(raw) {
 export function createOpenAIClient(fetchImpl = fetch) {
   return {
     async correct({ config, exercise, answerText, attachment }) {
-      const attachmentNote = attachment
-        ? `Pièce jointe (métadonnées uniquement, contenu non analysé) : ${JSON.stringify(attachment)}.`
-        : 'Aucune pièce jointe.'
-      const prompt = `Tu es un correcteur bienveillant de mathématiques pour le Tronc Commun Sciences marocain. Corrige en français de façon pédagogique. N’affiche jamais de chaîne de pensée ni de raisonnement interne : donne seulement une justification concise et vérifiable.\nExercice : ${exercise.prompt}\nType attendu : ${exercise.responseType}\nBarème : ${exercise.rubric}\nRéponse de l’élève :\n${answerText}\n${attachmentNote}\nRetourne uniquement un objet JSON : {"score": nombre de 0 à 20, "strengths": [chaînes], "corrections": [chaînes], "nextStep": chaîne}.`
+      const attachmentNote = attachment ? `Une photo de la copie est jointe et doit être lue attentivement.` : 'Aucune photo jointe.'
+      const prompt = `Tu es un correcteur bienveillant de mathématiques pour le Tronc Commun Sciences marocain. Corrige en français de façon pédagogique. N’affiche jamais de chaîne de pensée ni de raisonnement interne : donne seulement une justification concise et vérifiable.\nExercice : ${exercise.prompt}\nType attendu : ${exercise.responseType}\nBarème : ${exercise.rubric}\nRéponse tapée de l’élève :\n${answerText || '(aucune réponse tapée ; lis la photo)'}\n${attachmentNote}\nRetourne uniquement un objet JSON : {"score": nombre de 0 à 20, "strengths": [chaînes], "corrections": [chaînes], "nextStep": chaîne}.`
+      const studentContent = attachment
+        ? [{ type: 'text', text: prompt }, { type: 'image_url', image_url: { url: attachment.imageDataUrl, detail: 'high' } }]
+        : prompt
       const response = await fetchImpl(`${config.baseUrl}/chat/completions`, {
         method: 'POST',
         headers: { authorization: `Bearer ${config.apiKey}`, 'content-type': 'application/json' },
-        body: JSON.stringify({ model: config.model, temperature: 0.2, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Réponds en français, en JSON strict, sans chaîne de pensée.' }, { role: 'user', content: prompt }] }),
+        body: JSON.stringify({ model: config.model, temperature: 0.2, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Réponds en français, en JSON strict, sans chaîne de pensée.' }, { role: 'user', content: studentContent }] }),
         signal: AbortSignal.timeout(45_000),
       })
       if (!response.ok) throw new Error(`Service de correction indisponible (${response.status}).`)

@@ -26,7 +26,7 @@ type SavedWork = {
 
 const exercises = exerciseCatalog as Exercise[]
 const STORAGE_KEY = 'mathsprint-tc-exercises-v1'
-const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf']
+const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 
 function readWork(): Record<string, SavedWork> {
@@ -85,14 +85,14 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
   const chooseFile = (chosen?: File) => {
     setMessage(''); setState('idle')
     if (!chosen) { setFile(null); return }
-    if (!ACCEPTED_TYPES.includes(chosen.type)) { setFile(null); setState('error'); setMessage('Format refusé : choisis une image JPG, PNG, WebP ou un PDF.'); return }
+    if (!ACCEPTED_TYPES.includes(chosen.type)) { setFile(null); setState('error'); setMessage('Format refusé : choisis une photo JPG, PNG ou WebP.'); return }
     if (chosen.size > MAX_FILE_SIZE) { setFile(null); setState('error'); setMessage('Ce fichier dépasse la limite de 5 Mo.'); return }
     setFile(chosen)
   }
 
   const submit = async (event: FormEvent) => {
     event.preventDefault()
-    if (!answerText.trim()) { setState('error'); setMessage('Écris d’abord ta démarche ou ta réponse.'); return }
+    if (!answerText.trim() && !file) { setState('error'); setMessage('Écris une démarche ou ajoute une photo de ta réponse.'); return }
     setState('pending'); setMessage('')
     const form = new FormData()
     form.set('courseId', courseId); form.set('exerciseId', selected.id); form.set('answerText', answerText.trim())
@@ -112,20 +112,20 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
   }
 
   return <section className="exercise-workspace">
-    <div className="exercise-intro"><div><span className="eyebrow">Mise en pratique</span><h2>Choisis, rédige, puis améliore.</h2><p>Trois exercices ciblés. La correction automatique s’appuie sur ta réponse tapée et le barème affiché.</p></div><span className="exercise-count">3 exercices</span></div>
+    <div className="exercise-intro"><div><span className="eyebrow">Mise en pratique</span><h2>Choisis, rédige, puis améliore.</h2><p>Trois exercices ciblés. Envoie ta démarche écrite, une photo nette de ta copie, ou les deux : le correcteur compare avec le barème.</p></div><span className="exercise-count">3 exercices</span></div>
     <div className="exercise-layout">
       <aside className="exercise-picker" aria-label="Choisir un exercice">{available.map((exercise, index) => <button key={exercise.id} className={selected.id === exercise.id ? 'active' : ''} onClick={() => chooseExercise(exercise.id)}><span>{index + 1}</span><div><b>{exercise.title}</b><small>{exercise.responseType}</small></div></button>)}</aside>
       <form className="exercise-sheet" onSubmit={submit}>
         <span className="eyebrow">Énoncé</span><h3>{selected.title}</h3><p className="exercise-prompt">{selected.prompt}</p>
         <div className="rubric"><b>Barème de correction</b><span>{selected.rubric}</span></div>
-        <label className="answer-label" htmlFor={`answer-${selected.id}`}><b>Ta solution</b><span>Explique les étapes utiles, pas seulement le résultat.</span></label>
-        <textarea id={`answer-${selected.id}`} value={answerText} onChange={event => setAnswerText(event.target.value)} maxLength={20000} rows={9} placeholder="Rédige ta démarche ici…" disabled={state === 'pending'} />
+        <label className="answer-label" htmlFor={`answer-${selected.id}`}><b>Ta démarche <small>facultative si ta photo est lisible</small></b><span>Ajoute les étapes utiles pour aider la correction.</span></label>
+        <textarea id={`answer-${selected.id}`} value={answerText} onChange={event => setAnswerText(event.target.value)} maxLength={20000} rows={9} placeholder="Rédige ta démarche, ou ajoute une photo de ta copie ci-dessous…" disabled={state === 'pending'} />
         <div className="draft-line"><span>{answerText.length.toLocaleString('fr-FR')} / 20 000</span><span>✓ Brouillon enregistré sur cet appareil</span></div>
-        <label className="file-drop"><input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={event => chooseFile(event.target.files?.[0])} disabled={state === 'pending'} /><span><b>{file ? file.name : 'Ajouter une image ou un PDF'}</b><small>{file ? formatBytes(file.size) : 'Facultatif · 5 Mo maximum'}</small></span></label>
-        <p className="privacy-note"><strong>Transparence :</strong> cette première version évalue uniquement le texte saisi. Le fichier n’est pas lu par le modèle ; seules ses métadonnées (nom, type, taille) accompagnent la demande.</p>
+        <label className="file-drop"><input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={event => chooseFile(event.target.files?.[0])} disabled={state === 'pending'} /><span><b>{file ? file.name : 'Ajouter une photo de ta copie'}</b><small>{file ? formatBytes(file.size) : 'JPG, PNG ou WebP · 5 Mo maximum'}</small></span></label>
+        <p className="privacy-note"><strong>Transparence :</strong> une photo jointe est envoyée au modèle choisi par l’administrateur pour être lue, puis n’est pas conservée par MathSprint. N’ajoute aucune donnée personnelle.</p>
         {state === 'error' && <div className="submit-state error" role="alert"><b>Correction non reçue</b><span>{message}</span><small>Ton brouillon reste enregistré. Aucune correction n’est inventée.</small></div>}
         {state === 'pending' && <div className="submit-state pending" role="status"><span className="loader"/><div><b>Correction en cours…</b><small>Ta réponse est envoyée au service configuré par l’administrateur.</small></div></div>}
-        <button className="button primary submit-answer" type="submit" disabled={state === 'pending' || !answerText.trim()}>{state === 'pending' ? 'Analyse en cours…' : feedback ? 'Demander une nouvelle correction' : 'Envoyer pour correction'}</button>
+        <button className="button primary submit-answer" type="submit" disabled={state === 'pending' || (!answerText.trim() && !file)}>{state === 'pending' ? 'Analyse en cours…' : feedback ? 'Demander une nouvelle correction' : 'Envoyer pour correction'}</button>
       </form>
     </div>
     {feedback && <article className="feedback-card" aria-live="polite"><header><div><span className="eyebrow">Correction reçue</span><h2>Une base claire pour progresser</h2>{submittedAt && <small>{new Date(submittedAt).toLocaleString('fr-FR')}</small>}</div><div className="score"><strong>{feedback.score}</strong><span>/20</span></div></header><div className="feedback-grid"><section><h3>Ce qui est réussi</h3><ul>{feedback.strengths.map((item, index) => <li key={index}>{item}</li>)}</ul></section><section><h3>À corriger</h3><ul>{feedback.corrections.map((item, index) => <li key={index}>{item}</li>)}</ul></section></div><footer><span>Prochaine étape</span><b>{feedback.nextStep}</b>{savedAttachment && <small>Pièce jointe enregistrée comme métadonnées : {savedAttachment.name} · {formatBytes(savedAttachment.size)}</small>}</footer></article>}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { once } from 'node:events'
 import { readFileSync } from 'node:fs'
 
-import { createApp, createRuntimeConfig, validateConfigPatch } from '../server-lib.mjs'
+import { createApp, createOpenAIClient, createRuntimeConfig, validateConfigPatch } from '../server-lib.mjs'
 
 const exerciseId = 'ensembles-nombres-1'
 
@@ -103,7 +103,7 @@ test('multipart rejects invalid attachment type and oversized attachment', async
   })
 })
 
-test('multipart passes attachment metadata but never bytes to the LLM client', async () => {
+test('multipart passes an image data URL to the LLM client without storing the file', async () => {
   let received
   const app = createApp({ config: configured(), llmClient: { correct: async input => { received = input; return correction } } })
   await withServer(app, async base => {
@@ -112,8 +112,24 @@ test('multipart passes attachment metadata but never bytes to the LLM client', a
     form.set('attachment', new Blob(['image-bytes'], { type: 'image/png' }), 'copie.png')
     assert.equal((await fetch(`${base}/api/correct`, { method: 'POST', body: form })).status, 200)
   })
-  assert.deepEqual(received.attachment, { name: 'copie.png', mimetype: 'image/png', size: 11 })
-  assert.equal('buffer' in received.attachment, false)
+  assert.equal(received.attachment.name, 'copie.png')
+  assert.equal(received.attachment.mimetype, 'image/png')
+  assert.equal(received.attachment.size, 11)
+  assert.equal(received.attachment.imageDataUrl, 'data:image/png;base64,aW1hZ2UtYnl0ZXM=')
+})
+
+test('OpenAI-compatible client sends a photo as an image_url content part', async () => {
+  let request
+  const client = createOpenAIClient(async (_url, options) => {
+    request = JSON.parse(options.body)
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(correction) } }] }), { status: 200 })
+  })
+  const catalog = JSON.parse(readFileSync(new URL('../shared/exercises.json', import.meta.url), 'utf8'))
+  const feedback = await client.correct({ config: configured(), exercise: catalog[0], answerText: '', attachment: { name: 'copie.png', mimetype: 'image/png', size: 11, imageDataUrl: 'data:image/png;base64,aW1hZ2UtYnl0ZXM=' } })
+  assert.deepEqual(feedback, correction)
+  const content = request.messages[1].content
+  assert.equal(Array.isArray(content), true)
+  assert.deepEqual(content[1], { type: 'image_url', image_url: { url: 'data:image/png;base64,aW1hZ2UtYnl0ZXM=', detail: 'high' } })
 })
 
 test('admin status is protected and never returns the API key', async () => {

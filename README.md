@@ -38,14 +38,14 @@ npm run preview -- --host 127.0.0.1
 
 ## Exercices et correction
 
-Chaque chapitre expose exactement trois exercices topic-specific avec énoncé, type de réponse et barème. L’élève peut rédiger une solution et joindre au plus une image JPG/PNG/WebP ou un PDF de 5 Mo maximum. Les brouillons et les corrections réellement reçues sont enregistrés dans `localStorage` sous `mathsprint-tc-exercises-v1`. Une erreur ou une configuration LLM absente est affichée comme telle : l’interface ne fabrique pas de correction.
+Chaque chapitre expose exactement trois exercices adaptés au thème, avec énoncé, type de réponse et barème. L’élève peut rédiger une solution, joindre une **photo JPG/PNG/WebP** nette de sa copie, ou faire les deux. Les brouillons et les corrections réellement reçues sont enregistrés dans `localStorage` sous `mathsprint-tc-exercises-v1`. Une erreur ou une configuration LLM absente est affichée comme telle : l’interface ne fabrique pas de correction.
 
 Le backend :
 
 - valide `courseId` et `exerciseId` contre `shared/exercises.json` ;
 - refuse réponse vide, identifiant arbitraire, type interdit et fichier supérieur à 5 Mo ;
 - limite `/api/correct` à 10 requêtes par adresse IP sur 15 minutes ;
-- appelle `/chat/completions` avec une consigne française, pédagogique, JSON strict et sans chaîne de pensée ;
+- appelle `/chat/completions` avec une consigne française, pédagogique, JSON strict, sans chaîne de pensée et, lorsqu’une photo est jointe, un contenu `image_url` OpenAI-compatible ;
 - valide le JSON du fournisseur avant de le transmettre au navigateur ;
 - ne journalise ni réponses d’élèves, ni octets joints, ni clés.
 
@@ -53,9 +53,9 @@ La configuration faite dans `/admin` vit seulement dans la mémoire du processus
 
 ## Confidentialité et limites
 
-Une demande de correction transmet le texte tapé au fournisseur LLM configuré. Informer les élèves des règles de confidentialité et de conservation de ce fournisseur avant un déploiement réel ; éviter toute donnée personnelle dans une copie.
+Une demande de correction transmet la réponse tapée et, si l’élève en joint une, la photo de sa copie au fournisseur LLM configuré. Choisir dans `/admin` un modèle réellement compatible vision. Informer les élèves des règles de confidentialité et de conservation de ce fournisseur avant un déploiement réel ; éviter toute donnée personnelle dans une copie.
 
-Cette première implémentation accepte un fichier pour préparer le flux, mais n’envoie jamais ses octets au LLM : seules les métadonnées `nom`, `type MIME` et `taille` sont incluses dans la consigne et enregistrées avec la correction locale. Le serveur garde brièvement le fichier en mémoire pendant la requête puis le libère. L’interface le dit explicitement. Une analyse vision/PDF nécessiterait une implémentation fournisseur spécifique, une politique de confidentialité et des contrôles supplémentaires.
+Les photos sont gardées uniquement en mémoire pendant la requête, encodées comme une entrée `image_url` pour le fournisseur, puis libérées : MathSprint n’enregistre localement que le nom, le type et la taille de la pièce jointe avec le résultat. Les PDF ne sont pas acceptés dans cette version, afin de ne pas prétendre les corriger sans pipeline d’extraction fiable.
 
 Le rate limiting est en mémoire et par processus. Derrière un proxy ou avec plusieurs instances, configurer correctement l’adresse IP de confiance et utiliser un magasin partagé avant la production. La configuration admin en mémoire n’est pas un gestionnaire de secrets. Utiliser HTTPS, un secret manager, des en-têtes de sécurité et un contrôle d’accès réseau pour un déploiement public.
 
