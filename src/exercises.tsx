@@ -132,9 +132,11 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
   </section>
 }
 
+import { ThemePreset } from './types'
+
 type AdminStatus = { enabled: boolean; baseUrl: string; model: string; keyConfigured: boolean }
 
-export function AdminPage() {
+export function LLMConfigPage() {
   const [token, setToken] = useState('')
   const [status, setStatus] = useState<AdminStatus | null>(null)
   const [baseUrl, setBaseUrl] = useState('https://api.openai.com/v1')
@@ -165,4 +167,310 @@ export function AdminPage() {
   }
 
   return <><section className="page-intro compact admin-intro"><span className="eyebrow">Configuration privée</span><h1>Brancher la correction,<br/><em>sans exposer la clé.</em></h1><p>Une configuration minimale, volontairement temporaire. Rien n’est écrit dans le navigateur ni dans un fichier serveur.</p></section><section className="admin-panel"><div className="admin-warning"><b>Configuration volatile</b><p>Tout changement est perdu au redémarrage. Le jeton administrateur reste en mémoire React jusqu’à la fermeture ou au rechargement de cette page. La clé LLM est en écriture seule et ne sera jamais réaffichée.</p></div><label><span>Jeton administrateur</span><input type="password" autoComplete="off" value={token} onChange={event => setToken(event.target.value)} placeholder="ADMIN_TOKEN" /></label><button className="button secondary" onClick={load} disabled={busy || !token}>Vérifier le statut</button>{status && <div className={`admin-status ${status.enabled ? 'ready' : ''}`}><span>{status.enabled ? 'Correction active' : 'Correction inactive'}</span><dl><div><dt>URL API</dt><dd>{status.baseUrl}</dd></div><div><dt>Modèle</dt><dd>{status.model || 'Non défini'}</dd></div><div><dt>Clé</dt><dd>{status.keyConfigured ? 'Configurée (masquée)' : 'Non configurée'}</dd></div></dl></div>}<form onSubmit={save}><label><span>URL de base OpenAI-compatible</span><input type="url" required value={baseUrl} onChange={event => setBaseUrl(event.target.value)} /></label><label><span>Modèle</span><input required value={model} onChange={event => setModel(event.target.value)} placeholder="gpt-4.1-mini" /></label><label><span>Nouvelle clé API <small>facultatif si déjà configurée</small></span><input type="password" autoComplete="new-password" value={apiKey} onChange={event => setApiKey(event.target.value)} placeholder="Écriture seule" /></label><button className="button primary" type="submit" disabled={busy || !token}>{busy ? 'Connexion…' : 'Appliquer au serveur'}</button></form>{message && <p className="admin-message" role="status">{message}</p>}</section></>
+}
+
+export function useAuth() {
+  const jwt = localStorage.getItem('jwt');
+  if (!jwt) return null;
+  try {
+    const payload = JSON.parse(atob(jwt.split('.')[1]));
+    return { token: jwt, user: payload };
+  } catch {
+    return null;
+  }
+}
+
+function ThemePanel({ auth }: { auth: NonNullable<ReturnType<typeof useAuth>> }) {
+  const [themes, setThemes] = useState<ThemePreset[]>([]);
+  const [selectedThemeId, setSelectedThemeId] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [applying, setApplying] = useState(false);
+
+  useEffect(() => {
+    const fetchThemes = async () => {
+      try {
+        const [themesRes, settingsRes] = await Promise.all([
+          fetch('/api/admin/themes', { headers: { authorization: `Bearer ${auth.token}` } }),
+          fetch('/api/admin/settings', { headers: { authorization: `Bearer ${auth.token}` } })
+        ]);
+        if (themesRes.ok && settingsRes.ok) {
+          setThemes(await themesRes.json());
+          const settings = await settingsRes.json();
+          setSelectedThemeId(settings.activeThemeId);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchThemes();
+  }, [auth.token]);
+
+  const applyTheme = async () => {
+    const theme = themes.find(t => t.id === selectedThemeId);
+    if (!theme) return;
+
+    setApplying(true);
+    try {
+      await fetch('/api/admin/themes', {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${auth.token}`
+        },
+        body: JSON.stringify({ themeId: theme.id, vars: theme.vars })
+      });
+
+      // Apply CSS vars for instant preview
+      for (const [key, value] of Object.entries(theme.vars)) {
+        document.documentElement.style.setProperty(key, value);
+      }
+    } finally {
+      setApplying(false);
+    }
+  };
+
+  if (loading) return <div>Chargement des thèmes...</div>;
+
+  return (
+    <section className="admin-panel theme-panel">
+      <h2>Thème</h2>
+      <div className="theme-options">
+        {themes.map(t => (
+          <label key={t.id} className="theme-card">
+            <input
+              type="radio"
+              name="theme"
+              value={t.id}
+              checked={selectedThemeId === t.id}
+              onChange={() => setSelectedThemeId(t.id)}
+            />
+            <span>{t.name}</span>
+          </label>
+        ))}
+      </div>
+      <button className="button primary" onClick={applyTheme} disabled={applying}>
+        {applying ? 'Application...' : 'Appliquer'}
+      </button>
+    </section>
+  );
+}
+
+type User = {
+  id: string;
+  email: string;
+  displayName: string;
+  role: string;
+  createdAt: number;
+  lastSeenAt: number;
+};
+
+function UsersPanel({ auth }: { auth: NonNullable<ReturnType<typeof useAuth>> }) {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/admin/users', { headers: { authorization: `Bearer ${auth.token}` } })
+      .then(res => res.json())
+      .then(setUsers)
+      .finally(() => setLoading(false));
+  }, [auth.token]);
+
+  const updateRole = async (id: string, role: string) => {
+    const res = await fetch(`/api/admin/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${auth.token}`
+      },
+      body: JSON.stringify({ role })
+    });
+    if (res.ok) {
+      setUsers(users.map(u => u.id === id ? { ...u, role } : u));
+    } else {
+      const err = await res.json();
+      alert(`Erreur: ${err.error}`);
+    }
+  };
+
+  const deleteUser = async (id: string) => {
+    if (!confirm('Voulez-vous vraiment désactiver cet utilisateur ?')) return;
+    const res = await fetch(`/api/admin/users/${id}`, {
+      method: 'DELETE',
+      headers: { authorization: `Bearer ${auth.token}` }
+    });
+    if (res.ok) {
+      setUsers(users.filter(u => u.id !== id));
+    } else {
+      const err = await res.json();
+      alert(`Erreur: ${err.error}`);
+    }
+  };
+
+  if (loading) return <div>Chargement des utilisateurs...</div>;
+
+  return (
+    <section className="admin-panel users-panel">
+      <h2>Utilisateurs</h2>
+      <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Nom</th>
+            <th>Rôle</th>
+            <th>Créé le</th>
+            <th>Dernière vue</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(u => (
+            <tr key={u.id}>
+              <td>{u.email}</td>
+              <td>{u.displayName}</td>
+              <td>
+                <select value={u.role} onChange={(e) => updateRole(u.id, e.target.value)}>
+                  <option value="user">Utilisateur</option>
+                  <option value="admin">Administrateur</option>
+                </select>
+              </td>
+              <td>{new Date(u.createdAt).toLocaleDateString('fr-FR')}</td>
+              <td>{u.lastSeenAt ? new Date(u.lastSeenAt).toLocaleDateString('fr-FR') : 'Jamais'}</td>
+              <td>
+                <button className="text-button" style={{ color: 'red' }} onClick={() => deleteUser(u.id)}>Désactiver</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  );
+}
+
+function Sparkline({ data }: { data: number[] }) {
+  if (!data || data.length === 0) return null;
+  const max = Math.max(...data, 1);
+  const min = 0;
+  const range = max - min;
+  const width = 100;
+  const height = 30;
+
+  const points = data.map((val, i) => {
+    const x = (i / (data.length - 1)) * width;
+    const y = height - ((val - min) / range) * height;
+    return `${x},${y}`;
+  }).join(' ');
+
+  return (
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" style={{ overflow: 'visible' }}>
+      <polyline points={points} fill="none" stroke="var(--primary, #0070f3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+type AnalyticsData = {
+  degraded?: boolean;
+  totalUsers: number;
+  newUsersLast7d: number;
+  activeUsersLast7d: number;
+  totalSessions: number;
+  avgSessionsPerUser: number;
+  avgSessionDurationMin: number;
+  topCourses: string[];
+  streakHistogram: Record<string, number>;
+  dailyActiveLast14d: number[];
+};
+
+function AnalyticsPanel({ auth }: { auth: NonNullable<ReturnType<typeof useAuth>> }) {
+  const [data, setData] = useState<AnalyticsData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/admin/analytics', { headers: { authorization: `Bearer ${auth.token}` } })
+      .then(res => res.json())
+      .then(setData)
+      .finally(() => setLoading(false));
+  }, [auth.token]);
+
+  if (loading) return <div>Chargement de l'analytique...</div>;
+  if (!data) return <div>Erreur de chargement.</div>;
+
+  const format = (n: number, decimals = 0) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: decimals }).format(n);
+
+  return (
+    <section className="admin-panel analytics-panel">
+      <h2>Analytique {data.degraded && <span style={{ color: 'orange', fontSize: '0.8em' }}>(Dégradé)</span>}</h2>
+
+      {!data.degraded && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+          <div className="stat-card" style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+            <h3>Utilisateurs</h3>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>{format(data.totalUsers)}</p>
+            <small>+{format(data.newUsersLast7d)} les 7 derniers jours</small>
+          </div>
+
+          <div className="stat-card" style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+            <h3>Actifs (7j)</h3>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>{format(data.activeUsersLast7d)}</p>
+          </div>
+
+          <div className="stat-card" style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+            <h3>Sessions</h3>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>{format(data.totalSessions)}</p>
+            <small>{format(data.avgSessionsPerUser, 1)} / utilisateur</small>
+          </div>
+
+          <div className="stat-card" style={{ padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+            <h3>Durée moyenne</h3>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>{format(data.avgSessionDurationMin, 1)} min</p>
+          </div>
+        </div>
+      )}
+
+      {!data.degraded && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+          <div>
+            <h3>Activité (14 derniers jours)</h3>
+            <div style={{ padding: '1rem', background: '#fafafa', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+               <Sparkline data={data.dailyActiveLast14d} />
+            </div>
+          </div>
+          <div>
+             <h3>Top Cours</h3>
+             <ul>
+               {data.topCourses.map((c, i) => <li key={c}>{i + 1}. {c}</li>)}
+             </ul>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+export function AdminPage() {
+  const auth = useAuth();
+  const [activeTab, setActiveTab] = useState<'theme' | 'users' | 'analytics' | 'llm'>('theme');
+
+  if (!auth || auth.user.role !== 'admin') {
+    return <p>Accès refusé.</p>;
+  }
+
+  return (
+    <div className="admin-console" style={{ display: 'flex', gap: '2rem' }}>
+      <aside className="admin-sidebar" style={{ minWidth: '200px' }}>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <button className={activeTab === 'theme' ? 'active' : ''} onClick={() => setActiveTab('theme')}>Thème</button>
+          <button className={activeTab === 'users' ? 'active' : ''} onClick={() => setActiveTab('users')}>Utilisateurs</button>
+          <button className={activeTab === 'analytics' ? 'active' : ''} onClick={() => setActiveTab('analytics')}>Analytique</button>
+          <button className={activeTab === 'llm' ? 'active' : ''} onClick={() => setActiveTab('llm')}>LLM Config</button>
+        </nav>
+      </aside>
+
+      <main className="admin-main" style={{ flex: 1 }}>
+        {activeTab === 'theme' && <ThemePanel auth={auth} />}
+        {activeTab === 'users' && <UsersPanel auth={auth} />}
+        {activeTab === 'analytics' && <AnalyticsPanel auth={auth} />}
+        {activeTab === 'llm' && <LLMConfigPage />}
+      </main>
+    </div>
+  );
 }
