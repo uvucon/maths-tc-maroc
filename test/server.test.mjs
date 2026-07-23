@@ -20,10 +20,10 @@ test('catalog contains exactly three complete exercises for each of 15 courses',
   const catalog = JSON.parse(readFileSync(new URL('../shared/exercises.json', import.meta.url), 'utf8'))
   const groups = Map.groupBy(catalog, exercise => exercise.courseId)
   const courseIds = ['ensembles-nombres', 'arithmetique-n', 'calcul-vectoriel', 'projection-plan', 'ordre-r', 'droite-plan', 'polynomes', 'equations-systemes', 'trigonometrie-calcul', 'trigonometrie-equations', 'fonctions', 'transformations-plan', 'produit-scalaire', 'geometrie-espace', 'statistiques']
-  assert.equal(catalog.length, 45)
+  assert.equal(catalog.length, 90)
   assert.deepEqual([...groups.keys()], courseIds)
   for (const group of groups.values()) {
-    assert.equal(group.length, 3)
+    assert.equal(group.length, 6)
     for (const exercise of group) {
       assert.ok(exercise.id && exercise.prompt && exercise.responseType && exercise.rubric)
       assert.equal(exercise.id.startsWith(`${exercise.courseId}-`), true)

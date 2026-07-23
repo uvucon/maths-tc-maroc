@@ -5,6 +5,18 @@ export type Exercise = {
   courseId: string
   id: string
   title: string
+  context: string
+  source: string
+  year: number
+  examiner: string
+  type: string
+  durationMin: number
+  points: number
+  statement: string
+  hints: string[]
+  expectedSkills: string[]
+  difficulty: number
+
   prompt: string
   responseType: string
   rubric: string
@@ -60,12 +72,14 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
   const [file, setFile] = useState<File | null>(null)
   const [state, setState] = useState<'idle' | 'pending' | 'error'>('idle')
   const [message, setMessage] = useState('')
+  const [hintIndex, setHintIndex] = useState(0)
   const fileRef = useRef<HTMLInputElement>(null)
   const selected = available.find(item => item.id === selectedId) || available[0]
 
   const chooseExercise = (id: string) => {
     const saved = readWork()[id]
     setSelectedId(id)
+    setHintIndex(0)
     setAnswerText(saved?.answerText || '')
     setFeedback(saved?.feedback)
     setSubmittedAt(saved?.submittedAt)
@@ -116,8 +130,26 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
     <div className="exercise-layout">
       <aside className="exercise-picker" aria-label="Choisir un exercice">{available.map((exercise, index) => <button key={exercise.id} className={selected.id === exercise.id ? 'active' : ''} onClick={() => chooseExercise(exercise.id)}><span>{index + 1}</span><div><b>{exercise.title}</b><small>{exercise.responseType}</small></div></button>)}</aside>
       <form className="exercise-sheet" onSubmit={submit}>
-        <span className="eyebrow">Énoncé</span><h3>{selected.title}</h3><p className="exercise-prompt">{selected.prompt}</p>
-        <div className="rubric"><b>Barème de correction</b><span>{selected.rubric}</span></div>
+        <span className="eyebrow">{selected.source} · {selected.examiner} ({selected.year})</span>
+        <h3>{selected.title} <span className="difficulty-badge" style={{ color: '#f59e0b' }}>{'★'.repeat(selected.difficulty)}{'☆'.repeat(5 - selected.difficulty)}</span></h3>
+        <p className="exercise-prompt">{selected.context}</p>
+        <p className="exercise-statement">{selected.statement}</p>
+        {selected.hints && selected.hints.length > 0 && (
+          <div className="hints-section" style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '0.5rem' }}>
+            <button type="button" onClick={() => setHintIndex(i => Math.min(i + 1, selected.hints.length))} className="button secondary" style={{ marginBottom: hintIndex > 0 ? '0.5rem' : 0 }}>
+              {hintIndex < selected.hints.length ? 'Voir un indice' : 'Tous les indices sont affichés'}
+            </button>
+            {hintIndex > 0 && (
+              <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
+                {selected.hints.slice(0, hintIndex).map((hint, i) => (
+                  <li key={i} style={{ marginBottom: '0.25rem' }}>{hint}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+        <div className="rubric"><b>Barème de correction</b><span>{selected.points} points · {selected.durationMin} min</span></div>
+        <div className="rubric"><b>Compétences attendues</b><span>{selected.expectedSkills?.join(', ')}</span></div>
         <label className="answer-label" htmlFor={`answer-${selected.id}`}><b>Ta démarche <small>facultative si ta photo est lisible</small></b><span>Ajoute les étapes utiles pour aider la correction.</span></label>
         <textarea id={`answer-${selected.id}`} value={answerText} onChange={event => setAnswerText(event.target.value)} maxLength={20000} rows={9} placeholder="Rédige ta démarche, ou ajoute une photo de ta copie ci-dessous…" disabled={state === 'pending'} />
         <div className="draft-line"><span>{answerText.length.toLocaleString('fr-FR')} / 20 000</span><span>✓ Brouillon enregistré sur cet appareil</span></div>

@@ -1,61 +1,2342 @@
 [
-  {"courseId":"ensembles-nombres","id":"ensembles-nombres-1","title":"Classer des nombres","prompt":"Classe −3, 0,25, √2 et 7/3 dans le plus petit ensemble parmi N, Z, D, Q, R.","responseType":"Classement justifié","rubric":"4 pts par nombre : ensemble minimal correct (3) et justification concise (1)."},
-  {"courseId":"ensembles-nombres","id":"ensembles-nombres-2","title":"Intervalles","prompt":"Écris sous forme d’intervalle l’ensemble −2 < x ≤ 5, puis donne son intersection avec [1 ; 8[.","responseType":"Intervalle et calcul","rubric":"8 pts notation initiale, 8 pts intersection, 4 pts bornes correctement ouvertes ou fermées."},
-  {"courseId":"ensembles-nombres","id":"ensembles-nombres-3","title":"Distance et valeur absolue","prompt":"Résous |x − 3| ≤ 4 et représente l’ensemble solution sur une droite graduée.","responseType":"Démonstration courte","rubric":"8 pts traduction en distance, 8 pts intervalle [−1 ; 7], 4 pts représentation expliquée."},
-
-  {"courseId":"arithmetique-n","id":"arithmetique-n-1","title":"Division euclidienne","prompt":"Effectue la division euclidienne de 847 par 23 et vérifie l’égalité fondamentale.","responseType":"Calcul justifié","rubric":"8 pts quotient, 6 pts reste, 6 pts vérification 847 = 23q + r avec 0 ≤ r < 23."},
-  {"courseId":"arithmetique-n","id":"arithmetique-n-2","title":"Algorithme d’Euclide","prompt":"Calcule PGCD(252, 198) avec l’algorithme d’Euclide.","responseType":"Suite de divisions","rubric":"12 pts divisions successives exactes, 4 pts dernier reste non nul, 4 pts conclusion PGCD = 18."},
-  {"courseId":"arithmetique-n","id":"arithmetique-n-3","title":"Facteurs premiers","prompt":"Décompose 756 en facteurs premiers, puis déduis le nombre de ses diviseurs positifs.","responseType":"Décomposition et déduction","rubric":"10 pts 756 = 2²×3³×7, 6 pts formule des exposants, 4 pts résultat 24."},
-
-  {"courseId":"calcul-vectoriel","id":"calcul-vectoriel-1","title":"Relation de Chasles","prompt":"Dans un triangle ABC, simplifie AB⃗ + BC⃗ − AC⃗ et justifie avec Chasles.","responseType":"Calcul vectoriel","rubric":"12 pts usage correct de Chasles, 4 pts simplification en vecteur nul, 4 pts notation."},
-  {"courseId":"calcul-vectoriel","id":"calcul-vectoriel-2","title":"Coordonnées d’un vecteur","prompt":"Avec A(−2, 1) et B(4, −3), calcule AB⃗ puis les coordonnées du milieu I de [AB].","responseType":"Calcul coordonné","rubric":"10 pts AB⃗ = (6, −4), 8 pts I = (1, −1), 2 pts formules."},
-  {"courseId":"calcul-vectoriel","id":"calcul-vectoriel-3","title":"Tester la colinéarité","prompt":"Les vecteurs u⃗(3, −2) et v⃗(−9, 6) sont-ils colinéaires ? Donne le coefficient éventuel.","responseType":"Décision justifiée","rubric":"8 pts critère, 8 pts coefficient −3, 4 pts conclusion explicite."},
-
-  {"courseId":"projection-plan","id":"projection-plan-1","title":"Thalès direct","prompt":"Dans ABC, M∈[AB], N∈[AC] et MN∥BC. AB=10, AM=6, AC=15. Calcule AN.","responseType":"Démonstration géométrique","rubric":"6 pts conditions de Thalès, 8 pts proportion AM/AB = AN/AC, 6 pts AN = 9."},
-  {"courseId":"projection-plan","id":"projection-plan-2","title":"Réciproque de Thalès","prompt":"Dans ABC, M∈[AB] et N∈[AC]. AB=12, AM=8, AC=9, AN=6. Prouve que MN∥BC.","responseType":"Preuve courte","rubric":"6 pts alignements, 8 pts égalité 8/12 = 6/9, 6 pts conclusion par la réciproque."},
-  {"courseId":"projection-plan","id":"projection-plan-3","title":"Projection d’un milieu","prompt":"I est le milieu de [AB]. Une projection parallèle envoie A, I, B sur A′, I′, B′. Prouve que I′ est le milieu de [A′B′].","responseType":"Argumentation","rubric":"8 pts propriété de conservation des rapports, 8 pts A′I′ = I′B′, 4 pts conclusion et alignement."},
-
-  {"courseId":"ordre-r","id":"ordre-r-1","title":"Encadrer une somme","prompt":"Sachant 2 ≤ x ≤ 5 et −3 ≤ y ≤ 1, encadre x + y au plus précis.","responseType":"Encadrement justifié","rubric":"8 pts addition des bornes, 8 pts −1 ≤ x+y ≤ 6, 4 pts justification."},
-  {"courseId":"ordre-r","id":"ordre-r-2","title":"Comparer sans décimales","prompt":"Compare √7 et 8/3 sans utiliser de valeur décimale.","responseType":"Comparaison démontrée","rubric":"8 pts positivité, 8 pts comparaison des carrés 7 et 64/9, 4 pts conclusion √7 < 8/3."},
-  {"courseId":"ordre-r","id":"ordre-r-3","title":"Résoudre une inégalité absolue","prompt":"Résous |2x − 1| < 5 et écris la solution en intervalle.","responseType":"Résolution algébrique","rubric":"8 pts double inégalité, 8 pts −2 < x < 3, 4 pts intervalle ]−2 ; 3[."},
-
-  {"courseId":"droite-plan","id":"droite-plan-1","title":"Équation de droite","prompt":"Détermine une équation cartésienne de la droite passant par A(1, 2) et B(3, −2).","responseType":"Calcul analytique","rubric":"8 pts vecteur directeur, 8 pts équation 2x+y−4=0 ou équivalente, 4 pts vérification des points."},
-  {"courseId":"droite-plan","id":"droite-plan-2","title":"Intersection","prompt":"Calcule le point d’intersection de d: y=2x−1 et d′: x+y=5.","responseType":"Résolution de système","rubric":"8 pts substitution, 8 pts point (2,3), 4 pts vérification dans les deux équations."},
-  {"courseId":"droite-plan","id":"droite-plan-3","title":"Droites parallèles","prompt":"Trouve l’équation réduite de la droite parallèle à y=−3x+4 passant par P(2,1).","responseType":"Équation justifiée","rubric":"8 pts même pente −3, 8 pts ordonnée à l’origine 7, 4 pts équation y=−3x+7."},
-
-  {"courseId":"polynomes","id":"polynomes-1","title":"Factoriser","prompt":"Factorise complètement P(x)=x³−4x²−x+4.","responseType":"Calcul algébrique","rubric":"8 pts groupement, 8 pts (x−4)(x−1)(x+1), 4 pts vérification ou étapes lisibles."},
-  {"courseId":"polynomes","id":"polynomes-2","title":"Racine et quotient","prompt":"Vérifie que 2 est racine de P(x)=x³−3x²−4x+12, puis factorise P.","responseType":"Preuve et factorisation","rubric":"6 pts P(2)=0, 8 pts quotient x²−x−6, 6 pts P=(x−2)(x−3)(x+2)."},
-  {"courseId":"polynomes","id":"polynomes-3","title":"Identité polynomiale","prompt":"Développe et réduis (2x−3)²−(x+1)(x−1), puis indique le degré et le coefficient dominant.","responseType":"Développement","rubric":"12 pts résultat 3x²−12x+10, 4 pts degré 2, 4 pts coefficient dominant 3."},
-
-  {"courseId":"equations-systemes","id":"equations-systemes-1","title":"Équation quotient","prompt":"Résous (2x−3)/(x+1)=1 en précisant la valeur interdite.","responseType":"Résolution avec domaine","rubric":"6 pts x≠−1, 10 pts résolution x=4, 4 pts vérification admissible."},
-  {"courseId":"equations-systemes","id":"equations-systemes-2","title":"Inéquation produit","prompt":"Résous (x−2)(x+3) ≤ 0 à l’aide d’un tableau de signes.","responseType":"Tableau de signes expliqué","rubric":"6 pts racines −3 et 2, 8 pts signes, 6 pts solution [−3 ; 2]."},
-  {"courseId":"equations-systemes","id":"equations-systemes-3","title":"Système 2×2","prompt":"Résous le système 2x+y=7 et x−y=2, puis vérifie la solution.","responseType":"Résolution de système","rubric":"12 pts méthode correcte, 4 pts (x,y)=(3,1), 4 pts vérification."},
-
-  {"courseId":"trigonometrie-calcul","id":"trigonometrie-calcul-1","title":"Radians et degrés","prompt":"Convertis 225° en radians et 7π/6 radians en degrés.","responseType":"Conversions","rubric":"8 pts 225°=5π/4, 8 pts 7π/6=210°, 4 pts facteurs de conversion."},
-  {"courseId":"trigonometrie-calcul","id":"trigonometrie-calcul-2","title":"Valeurs exactes","prompt":"Calcule exactement cos(π/3)+sin(π/6)−tan(π/4).","responseType":"Calcul exact","rubric":"12 pts valeurs remarquables correctes, 6 pts résultat 0, 2 pts écriture exacte."},
-  {"courseId":"trigonometrie-calcul","id":"trigonometrie-calcul-3","title":"Identité fondamentale","prompt":"Si cos α=3/5 et α∈[0,π/2], calcule sin α en justifiant le signe.","responseType":"Déduction trigonométrique","rubric":"8 pts sin²+cos²=1, 8 pts sin α=4/5, 4 pts signe positif lié au quadrant."},
-
-  {"courseId":"trigonometrie-equations","id":"trigonometrie-equations-1","title":"Équation sinus","prompt":"Résous sin x=1/2 sur [0,2π].","responseType":"Ensemble de solutions","rubric":"8 pts angles de référence, 8 pts {π/6,5π/6}, 4 pts respect de l’intervalle."},
-  {"courseId":"trigonometrie-equations","id":"trigonometrie-equations-2","title":"Équation cosinus","prompt":"Résous cos(2x)=0 sur [0,π].","responseType":"Résolution détaillée","rubric":"8 pts 2x=π/2+kπ, 8 pts x∈{π/4,3π/4}, 4 pts filtrage de l’intervalle."},
-  {"courseId":"trigonometrie-equations","id":"trigonometrie-equations-3","title":"Inéquation sur le cercle","prompt":"Résous cos x ≥ 0 sur [−π,π].","responseType":"Intervalle trigonométrique","rubric":"8 pts lecture du cercle, 8 pts [−π/2,π/2], 4 pts bornes incluses."},
-
-  {"courseId":"fonctions","id":"fonctions-1","title":"Domaine de définition","prompt":"Détermine le domaine de f(x)=√(2x−1)/(x−3).","responseType":"Étude de conditions","rubric":"8 pts 2x−1≥0, 6 pts x≠3, 6 pts domaine [1/2,3[∪]3,+∞[."},
-  {"courseId":"fonctions","id":"fonctions-2","title":"Parité","prompt":"Étudie la parité de f(x)=x³−4x sur R.","responseType":"Démonstration","rubric":"8 pts calcul f(−x), 8 pts f(−x)=−f(x), 4 pts conclusion fonction impaire."},
-  {"courseId":"fonctions","id":"fonctions-3","title":"Images et antécédents","prompt":"Pour f(x)=x²−4, calcule l’image de −3 et les antécédents de 5.","responseType":"Calcul fonctionnel","rubric":"6 pts f(−3)=5, 10 pts x²=9 donc x=−3 ou 3, 4 pts vocabulaire correct."},
-
-  {"courseId":"transformations-plan","id":"transformations-plan-1","title":"Translation","prompt":"La translation de vecteur u⃗(−2,3) envoie A(4,−1) sur A′. Calcule A′.","responseType":"Calcul coordonné","rubric":"8 pts addition coordonnée par coordonnée, 8 pts A′(2,2), 4 pts notation."},
-  {"courseId":"transformations-plan","id":"transformations-plan-2","title":"Symétrie centrale","prompt":"Trouve l’image P′ de P(5,−2) par la symétrie de centre O(1,1).","responseType":"Construction analytique","rubric":"8 pts O milieu de [PP′], 8 pts P′(−3,4), 4 pts vérification des milieux."},
-  {"courseId":"transformations-plan","id":"transformations-plan-3","title":"Rotation","prompt":"Dans un repère orthonormé, donne l’image de A(2,1) par la rotation de centre O et d’angle +90°.","responseType":"Calcul et explication","rubric":"8 pts règle (x,y)↦(−y,x), 8 pts A′(−1,2), 4 pts sens direct explicité."},
-
-  {"courseId":"produit-scalaire","id":"produit-scalaire-1","title":"Calcul en coordonnées","prompt":"Calcule u⃗·v⃗ pour u⃗(3,−2) et v⃗(4,5), puis indique si les vecteurs sont orthogonaux.","responseType":"Calcul et décision","rubric":"10 pts 3×4+(−2)×5=2, 6 pts non orthogonaux, 4 pts critère cité."},
-  {"courseId":"produit-scalaire","id":"produit-scalaire-2","title":"Angle entre vecteurs","prompt":"Sachant ||u⃗||=2, ||v⃗||=3 et u⃗·v⃗=3, calcule cos θ puis θ dans [0,π].","responseType":"Calcul trigonométrique","rubric":"8 pts formule, 6 pts cos θ=1/2, 6 pts θ=π/3."},
-  {"courseId":"produit-scalaire","id":"produit-scalaire-3","title":"Triangle rectangle","prompt":"Avec A(0,0), B(4,1), C(−1,4), prouve que ABC est rectangle en A.","responseType":"Preuve analytique","rubric":"8 pts AB⃗ et AC⃗, 8 pts produit scalaire nul, 4 pts conclusion d’orthogonalité."},
-
-  {"courseId":"geometrie-espace","id":"geometrie-espace-1","title":"Positions relatives","prompt":"Dans un cube ABCDEFGH, donne une droite parallèle à (AB), une droite perpendiculaire à (AB) et une droite gauche à (AB). Justifie.","responseType":"Description géométrique","rubric":"5 pts par exemple valide (12 pts), 8 pts justifications de parallélisme, orthogonalité et non-coplanarité."},
-  {"courseId":"geometrie-espace","id":"geometrie-espace-2","title":"Droite et plan","prompt":"Dans un cube ABCDEFGH, prouve que (AE) est perpendiculaire au plan (ABCD).","responseType":"Démonstration spatiale","rubric":"8 pts AE⊥AB, 8 pts AE⊥AD avec AB et AD sécantes du plan, 4 pts théorème conclu."},
-  {"courseId":"geometrie-espace","id":"geometrie-espace-3","title":"Plans parallèles","prompt":"Dans un prisme ABCDEF de bases ABC et DEF, explique pourquoi les plans (ABC) et (DEF) sont parallèles.","responseType":"Argumentation géométrique","rubric":"8 pts deux paires de droites sécantes correspondantes, 8 pts parallélismes cités, 4 pts conclusion sur les plans."},
-
-  {"courseId":"statistiques","id":"statistiques-1","title":"Moyenne pondérée","prompt":"Les notes 8, 10, 12, 15 ont pour effectifs 2, 3, 4, 1. Calcule la moyenne.","responseType":"Calcul statistique","rubric":"8 pts somme pondérée 109, 6 pts effectif 10, 6 pts moyenne 10,9."},
-  {"courseId":"statistiques","id":"statistiques-2","title":"Médiane et quartiles","prompt":"Pour la série ordonnée 2, 4, 4, 5, 7, 8, 9, 12, détermine médiane, Q1 et Q3 selon la convention du cours.","responseType":"Calcul d’indicateurs","rubric":"8 pts médiane 6, 6 pts Q1=4, 6 pts Q3=8, avec rangs expliqués."},
-  {"courseId":"statistiques","id":"statistiques-3","title":"Comparer la dispersion","prompt":"Les séries A: 9,10,10,11 et B: 2,10,10,18 ont la même moyenne. Compare leur dispersion sans calculer l’écart-type exact.","responseType":"Interprétation argumentée","rubric":"8 pts étendues 2 et 16, 8 pts B plus dispersée, 4 pts lien clair entre éloignement et dispersion."}
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2022). Thème: ensembles nombres.",
+    "source": "Bac Blanc 2019",
+    "year": 2022,
+    "examiner": "Lycée Hassan II",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Montrer que le nombre $A = \\frac{\\sqrt{2} - 1}{\\sqrt{2} + 1} - 3 + 2\\sqrt{2}$ appartient à l'ensemble $\\mathbb{Z}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Classe −3, 0,25, √2 et 7/3 dans le plus petit ensemble parmi N, Z, D, Q, R.",
+    "responseType": "Classement justifié",
+    "rubric": "4 pts par nombre : ensemble minimal correct (3) et justification concise (1)."
+  },
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Direction Provinciale (2023). Thème: ensembles nombres.",
+    "source": "Bac Blanc 2019",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Simplifier l'expression $B = \\sqrt{7 - 4\\sqrt{3}} + \\sqrt{3}$. En déduire la nature de $B$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Écris sous forme d’intervalle l’ensemble −2 < x ≤ 5, puis donne son intersection avec [1 ; 8[.",
+    "responseType": "Intervalle et calcul",
+    "rubric": "8 pts notation initiale, 8 pts intersection, 4 pts bornes correctement ouvertes ou fermées."
+  },
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2020). Thème: ensembles nombres.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Déterminer l'ensemble des réels $x$ tels que $|x - 2| < 5$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous |x − 3| ≤ 4 et représente l’ensemble solution sur une droite graduée.",
+    "responseType": "Démonstration courte",
+    "rubric": "8 pts traduction en distance, 8 pts intervalle [−1 ; 7], 4 pts représentation expliquée."
+  },
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Ibn Sina (2022). Thème: ensembles nombres.",
+    "source": "Bac Blanc 2021",
+    "year": 2022,
+    "examiner": "Lycée Ibn Sina",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Écrire sous forme d'intervalle l'ensemble des solutions de l'inéquation $3x - 1 \\leq 2x + 4$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Classe −3, 0,25, √2 et 7/3 dans le plus petit ensemble parmi N, Z, D, Q, R.",
+    "responseType": "Classement justifié",
+    "rubric": "4 pts par nombre : ensemble minimal correct (3) et justification concise (1)."
+  },
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Académie de Rabat (2021). Thème: ensembles nombres.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2021,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Le nombre $\\frac{\\pi}{2}$ appartient à l'ensemble: A) $\\mathbb{Q}$, B) $\\mathbb{R} \\setminus \\mathbb{Q}$, C) $\\mathbb{Z}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Écris sous forme d’intervalle l’ensemble −2 < x ≤ 5, puis donne son intersection avec [1 ; 8[.",
+    "responseType": "Intervalle et calcul",
+    "rubric": "8 pts notation initiale, 8 pts intersection, 4 pts bornes correctement ouvertes ou fermées."
+  },
+  {
+    "courseId": "ensembles-nombres",
+    "id": "ensembles-nombres-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Ibn Sina (2021). Thème: ensembles nombres.",
+    "source": "Régional 2018",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Montrer par l'absurde que $\\sqrt{2}$ n'est pas un nombre rationnel.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Résous |x − 3| ≤ 4 et représente l’ensemble solution sur une droite graduée.",
+    "responseType": "Démonstration courte",
+    "rubric": "8 pts traduction en distance, 8 pts intervalle [−1 ; 7], 4 pts représentation expliquée."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2022). Thème: arithmetique n.",
+    "source": "Régional 2018",
+    "year": 2022,
+    "examiner": "Lycée Hassan II",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Montrer que pour tout entier naturel $n$, le nombre $A = n(n+1)(n+2)$ est divisible par 3.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Effectue la division euclidienne de 847 par 23 et vérifie l’égalité fondamentale.",
+    "responseType": "Calcul justifié",
+    "rubric": "8 pts quotient, 6 pts reste, 6 pts vérification 847 = 23q + r avec 0 ≤ r < 23."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Hassan II (2019). Thème: arithmetique n.",
+    "source": "Régional 2022",
+    "year": 2019,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Décomposer en facteurs premiers les nombres $A = 1260$ et $B = 3528$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Calcule PGCD(252, 198) avec l’algorithme d’Euclide.",
+    "responseType": "Suite de divisions",
+    "rubric": "12 pts divisions successives exactes, 4 pts dernier reste non nul, 4 pts conclusion PGCD = 18."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Direction Provinciale (2021). Thème: arithmetique n.",
+    "source": "Bac Blanc 2019",
+    "year": 2021,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Calculer le PGCD et le PPCM de $A = 1260$ et $B = 3528$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Décompose 756 en facteurs premiers, puis déduis le nombre de ses diviseurs positifs.",
+    "responseType": "Décomposition et déduction",
+    "rubric": "10 pts 756 = 2²×3³×7, 6 pts formule des exposants, 4 pts résultat 24."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Lycée Hassan II (2018). Thème: arithmetique n.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2018,
+    "examiner": "Lycée Hassan II",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Simplifier la fraction $\\frac{1260}{3528}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Effectue la division euclidienne de 847 par 23 et vérifie l’égalité fondamentale.",
+    "responseType": "Calcul justifié",
+    "rubric": "8 pts quotient, 6 pts reste, 6 pts vérification 847 = 23q + r avec 0 ≤ r < 23."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2020). Thème: arithmetique n.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Si $n$ est pair, alors $n^2 + 2n$ est: A) divisible par 4, B) impair, C) premier.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Calcule PGCD(252, 198) avec l’algorithme d’Euclide.",
+    "responseType": "Suite de divisions",
+    "rubric": "12 pts divisions successives exactes, 4 pts dernier reste non nul, 4 pts conclusion PGCD = 18."
+  },
+  {
+    "courseId": "arithmetique-n",
+    "id": "arithmetique-n-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Hassan II (2019). Thème: arithmetique n.",
+    "source": "Bac Blanc 2021",
+    "year": 2019,
+    "examiner": "Lycée Hassan II",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Montrer que si $a$ et $b$ sont deux entiers premiers entre eux, alors $a+b$ et $ab$ le sont aussi.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Décompose 756 en facteurs premiers, puis déduis le nombre de ses diviseurs positifs.",
+    "responseType": "Décomposition et déduction",
+    "rubric": "10 pts 756 = 2²×3³×7, 6 pts formule des exposants, 4 pts résultat 24."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Académie de Rabat (2021). Thème: calcul vectoriel.",
+    "source": "Bac Blanc 2021",
+    "year": 2021,
+    "examiner": "Académie de Rabat",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Soit $ABC$ un triangle. Placer les points $E$ et $F$ tels que $\\vec{AE} = \\frac{2}{3}\\vec{AB}$ et $\\vec{AF} = \\frac{2}{3}\\vec{AC}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Dans un triangle ABC, simplifie AB⃗ + BC⃗ − AC⃗ et justifie avec Chasles.",
+    "responseType": "Calcul vectoriel",
+    "rubric": "12 pts usage correct de Chasles, 4 pts simplification en vecteur nul, 4 pts notation."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2019). Thème: calcul vectoriel.",
+    "source": "Bac Blanc 2021",
+    "year": 2019,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Montrer que les droites $(EF)$ et $(BC)$ sont parallèles.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Avec A(−2, 1) et B(4, −3), calcule AB⃗ puis les coordonnées du milieu I de [AB].",
+    "responseType": "Calcul coordonné",
+    "rubric": "10 pts AB⃗ = (6, −4), 8 pts I = (1, −1), 2 pts formules."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2022). Thème: calcul vectoriel.",
+    "source": "Régional 2018",
+    "year": 2022,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Déterminer les coordonnées du point $D$ tel que $ABCD$ soit un parallélogramme avec $A(1,2)$, $B(-1,3)$ et $C(2,-1)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Les vecteurs u⃗(3, −2) et v⃗(−9, 6) sont-ils colinéaires ? Donne le coefficient éventuel.",
+    "responseType": "Décision justifiée",
+    "rubric": "8 pts critère, 8 pts coefficient −3, 4 pts conclusion explicite."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2022). Thème: calcul vectoriel.",
+    "source": "Régional 2018",
+    "year": 2022,
+    "examiner": "Direction Provinciale",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Les vecteurs $\\vec{u}(2, -3)$ et $\\vec{v}(-4, 6)$ sont-ils colinéaires?",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Dans un triangle ABC, simplifie AB⃗ + BC⃗ − AC⃗ et justifie avec Chasles.",
+    "responseType": "Calcul vectoriel",
+    "rubric": "12 pts usage correct de Chasles, 4 pts simplification en vecteur nul, 4 pts notation."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Ibn Sina (2020). Thème: calcul vectoriel.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: La somme de deux vecteurs opposés est égale à: A) un nombre nul, B) le vecteur nul, C) $\\vec{i}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Avec A(−2, 1) et B(4, −3), calcule AB⃗ puis les coordonnées du milieu I de [AB].",
+    "responseType": "Calcul coordonné",
+    "rubric": "10 pts AB⃗ = (6, −4), 8 pts I = (1, −1), 2 pts formules."
+  },
+  {
+    "courseId": "calcul-vectoriel",
+    "id": "calcul-vectoriel-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Ibn Sina (2020). Thème: calcul vectoriel.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que le milieu du segment $[AB]$ a pour coordonnées $(\\frac{x_A+x_B}{2}, \\frac{y_A+y_B}{2})$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Les vecteurs u⃗(3, −2) et v⃗(−9, 6) sont-ils colinéaires ? Donne le coefficient éventuel.",
+    "responseType": "Décision justifiée",
+    "rubric": "8 pts critère, 8 pts coefficient −3, 4 pts conclusion explicite."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Académie de Rabat (2021). Thème: projection plan.",
+    "source": "Bac Blanc 2019",
+    "year": 2021,
+    "examiner": "Académie de Rabat",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Soit $ABCD$ un trapèze de bases $[AB]$ et $[CD]$. Soit $I$ le milieu de $[AD]$ et $J$ le milieu de $[BC]$. Montrer que $(IJ)$ est parallèle à $(AB)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Dans ABC, M∈[AB], N∈[AC] et MN∥BC. AB=10, AM=6, AC=15. Calcule AN.",
+    "responseType": "Démonstration géométrique",
+    "rubric": "6 pts conditions de Thalès, 8 pts proportion AM/AB = AN/AC, 6 pts AN = 9."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Hassan II (2023). Thème: projection plan.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "En utilisant le théorème de Thalès, calculer la longueur de $[IJ]$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Dans ABC, M∈[AB] et N∈[AC]. AB=12, AM=8, AC=9, AN=6. Prouve que MN∥BC.",
+    "responseType": "Preuve courte",
+    "rubric": "6 pts alignements, 8 pts égalité 8/12 = 6/9, 6 pts conclusion par la réciproque."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Régional 2018, Académie de Rabat (2020). Thème: projection plan.",
+    "source": "Régional 2018",
+    "year": 2020,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Soit $p$ la projection sur la droite $(AB)$ parallèlement à $(BC)$. Quelle est l'image du point $C$?",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "I est le milieu de [AB]. Une projection parallèle envoie A, I, B sur A′, I′, B′. Prouve que I′ est le milieu de [A′B′].",
+    "responseType": "Argumentation",
+    "rubric": "8 pts propriété de conservation des rapports, 8 pts A′I′ = I′B′, 4 pts conclusion et alignement."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Lycée Hassan II (2018). Thème: projection plan.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2018,
+    "examiner": "Lycée Hassan II",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Calculer les rapports de projection dans un triangle avec une parallèle à un côté.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Dans ABC, M∈[AB], N∈[AC] et MN∥BC. AB=10, AM=6, AC=15. Calcule AN.",
+    "responseType": "Démonstration géométrique",
+    "rubric": "6 pts conditions de Thalès, 8 pts proportion AM/AB = AN/AC, 6 pts AN = 9."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Régional 2018, Académie de Rabat (2021). Thème: projection plan.",
+    "source": "Régional 2018",
+    "year": 2021,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: La projection conserve: A) les longueurs, B) les angles, C) le milieu d'un segment.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Dans ABC, M∈[AB] et N∈[AC]. AB=12, AM=8, AC=9, AN=6. Prouve que MN∥BC.",
+    "responseType": "Preuve courte",
+    "rubric": "6 pts alignements, 8 pts égalité 8/12 = 6/9, 6 pts conclusion par la réciproque."
+  },
+  {
+    "courseId": "projection-plan",
+    "id": "projection-plan-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Direction Provinciale (2022). Thème: projection plan.",
+    "source": "Bac Blanc 2019",
+    "year": 2022,
+    "examiner": "Direction Provinciale",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer la conservation du milieu par projection parallèle.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "I est le milieu de [AB]. Une projection parallèle envoie A, I, B sur A′, I′, B′. Prouve que I′ est le milieu de [A′B′].",
+    "responseType": "Argumentation",
+    "rubric": "8 pts propriété de conservation des rapports, 8 pts A′I′ = I′B′, 4 pts conclusion et alignement."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Hassan II (2023). Thème: ordre r.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Comparer les nombres $a = 3\\sqrt{2}$ et $b = 2\\sqrt{5}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Sachant 2 ≤ x ≤ 5 et −3 ≤ y ≤ 1, encadre x + y au plus précis.",
+    "responseType": "Encadrement justifié",
+    "rubric": "8 pts addition des bornes, 8 pts −1 ≤ x+y ≤ 6, 4 pts justification."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Ibn Sina (2021). Thème: ordre r.",
+    "source": "Bac Blanc 2019",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Déduire une comparaison entre $\\frac{1}{3\\sqrt{2}}$ et $\\frac{1}{2\\sqrt{5}}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Compare √7 et 8/3 sans utiliser de valeur décimale.",
+    "responseType": "Comparaison démontrée",
+    "rubric": "8 pts positivité, 8 pts comparaison des carrés 7 et 64/9, 4 pts conclusion √7 < 8/3."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Académie de Rabat (2020). Thème: ordre r.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2020,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Encadrer le nombre $x+y$ sachant que $2 < x < 3$ et $-1 < y < 4$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous |2x − 1| < 5 et écris la solution en intervalle.",
+    "responseType": "Résolution algébrique",
+    "rubric": "8 pts double inégalité, 8 pts −2 < x < 3, 4 pts intervalle ]−2 ; 3[."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Régional 2022, Direction Provinciale (2023). Thème: ordre r.",
+    "source": "Régional 2022",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Encadrer le produit $xy$ avec les mêmes conditions.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Sachant 2 ≤ x ≤ 5 et −3 ≤ y ≤ 1, encadre x + y au plus précis.",
+    "responseType": "Encadrement justifié",
+    "rubric": "8 pts addition des bornes, 8 pts −1 ≤ x+y ≤ 6, 4 pts justification."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2021). Thème: ordre r.",
+    "source": "Régional 2018",
+    "year": 2021,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Si $a < b$, alors $-2a$: A) $> -2b$, B) $< -2b$, C) $= -2b$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Compare √7 et 8/3 sans utiliser de valeur décimale.",
+    "responseType": "Comparaison démontrée",
+    "rubric": "8 pts positivité, 8 pts comparaison des carrés 7 et 64/9, 4 pts conclusion √7 < 8/3."
+  },
+  {
+    "courseId": "ordre-r",
+    "id": "ordre-r-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2018, Académie de Rabat (2019). Thème: ordre r.",
+    "source": "Régional 2018",
+    "year": 2019,
+    "examiner": "Académie de Rabat",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Montrer que pour tous réels $a, b > 0$, on a $\\frac{a+b}{2} \\geq \\sqrt{ab}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Résous |2x − 1| < 5 et écris la solution en intervalle.",
+    "responseType": "Résolution algébrique",
+    "rubric": "8 pts double inégalité, 8 pts −2 < x < 3, 4 pts intervalle ]−2 ; 3[."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Académie de Rabat (2019). Thème: droite plan.",
+    "source": "Bac Blanc 2019",
+    "year": 2019,
+    "examiner": "Académie de Rabat",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Déterminer une équation cartésienne de la droite $(D)$ passant par $A(1, 2)$ et de vecteur directeur $\\vec{u}(-1, 3)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Détermine une équation cartésienne de la droite passant par A(1, 2) et B(3, −2).",
+    "responseType": "Calcul analytique",
+    "rubric": "8 pts vecteur directeur, 8 pts équation 2x+y−4=0 ou équivalente, 4 pts vérification des points."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2018). Thème: droite plan.",
+    "source": "Régional 2018",
+    "year": 2018,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Déterminer l'équation réduite de la droite $(D)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Calcule le point d’intersection de d: y=2x−1 et d′: x+y=5.",
+    "responseType": "Résolution de système",
+    "rubric": "8 pts substitution, 8 pts point (2,3), 4 pts vérification dans les deux équations."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2020). Thème: droite plan.",
+    "source": "Bac Blanc 2019",
+    "year": 2020,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Calculer les coordonnées du point d'intersection des droites $(D_1): 2x - y + 1 = 0$ et $(D_2): x + 3y - 2 = 0$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Trouve l’équation réduite de la droite parallèle à y=−3x+4 passant par P(2,1).",
+    "responseType": "Équation justifiée",
+    "rubric": "8 pts même pente −3, 8 pts ordonnée à l’origine 7, 4 pts équation y=−3x+7."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Lycée Hassan II (2020). Thème: droite plan.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2020,
+    "examiner": "Lycée Hassan II",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Montrer que les droites $(D_1)$ et $(D_2)$ sont sécantes.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Détermine une équation cartésienne de la droite passant par A(1, 2) et B(3, −2).",
+    "responseType": "Calcul analytique",
+    "rubric": "8 pts vecteur directeur, 8 pts équation 2x+y−4=0 ou équivalente, 4 pts vérification des points."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Régional 2022, Académie de Rabat (2022). Thème: droite plan.",
+    "source": "Régional 2022",
+    "year": 2022,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Le vecteur $\\vec{u}(a, b)$ est directeur de la droite d'équation: A) $ax+by+c=0$, B) $bx-ay+c=0$, C) $x-y=0$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Calcule le point d’intersection de d: y=2x−1 et d′: x+y=5.",
+    "responseType": "Résolution de système",
+    "rubric": "8 pts substitution, 8 pts point (2,3), 4 pts vérification dans les deux équations."
+  },
+  {
+    "courseId": "droite-plan",
+    "id": "droite-plan-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2021). Thème: droite plan.",
+    "source": "Bac Blanc 2021",
+    "year": 2021,
+    "examiner": "Direction Provinciale",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que deux droites de pentes $m$ et $m'$ sont parallèles si et seulement si $m = m'$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Trouve l’équation réduite de la droite parallèle à y=−3x+4 passant par P(2,1).",
+    "responseType": "Équation justifiée",
+    "rubric": "8 pts même pente −3, 8 pts ordonnée à l’origine 7, 4 pts équation y=−3x+7."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Lycée Hassan II (2021). Thème: polynomes.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2021,
+    "examiner": "Lycée Hassan II",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "On considère le polynôme $P(x) = 2x^3 - 5x^2 - 4x + 3$. Montrer que 3 est une racine de $P(x)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Factorise complètement P(x)=x³−4x²−x+4.",
+    "responseType": "Calcul algébrique",
+    "rubric": "8 pts groupement, 8 pts (x−4)(x−1)(x+1), 4 pts vérification ou étapes lisibles."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2022, Direction Provinciale (2021). Thème: polynomes.",
+    "source": "Régional 2022",
+    "year": 2021,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Factoriser $P(x)$ sous la forme $(x-3)Q(x)$ où $Q(x)$ est un polynôme du second degré.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Vérifie que 2 est racine de P(x)=x³−3x²−4x+12, puis factorise P.",
+    "responseType": "Preuve et factorisation",
+    "rubric": "6 pts P(2)=0, 8 pts quotient x²−x−6, 6 pts P=(x−2)(x−3)(x+2)."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2018). Thème: polynomes.",
+    "source": "Régional 2018",
+    "year": 2018,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Résoudre dans $\\mathbb{R}$ l'équation $Q(x) = 0$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Développe et réduis (2x−3)²−(x+1)(x−1), puis indique le degré et le coefficient dominant.",
+    "responseType": "Développement",
+    "rubric": "12 pts résultat 3x²−12x+10, 4 pts degré 2, 4 pts coefficient dominant 3."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Ibn Sina (2023). Thème: polynomes.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Lycée Ibn Sina",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "En déduire le tableau de signes du polynôme $P(x)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Factorise complètement P(x)=x³−4x²−x+4.",
+    "responseType": "Calcul algébrique",
+    "rubric": "8 pts groupement, 8 pts (x−4)(x−1)(x+1), 4 pts vérification ou étapes lisibles."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Direction Provinciale (2018). Thème: polynomes.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2018,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Le degré du polynôme $(x^2+1)(x^3-2)$ est: A) 5, B) 6, C) 2.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Vérifie que 2 est racine de P(x)=x³−3x²−4x+12, puis factorise P.",
+    "responseType": "Preuve et factorisation",
+    "rubric": "6 pts P(2)=0, 8 pts quotient x²−x−6, 6 pts P=(x−2)(x−3)(x+2)."
+  },
+  {
+    "courseId": "polynomes",
+    "id": "polynomes-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Ibn Sina (2019). Thème: polynomes.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2019,
+    "examiner": "Lycée Ibn Sina",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer qu'un polynôme de degré $n$ a au plus $n$ racines réelles.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Développe et réduis (2x−3)²−(x+1)(x−1), puis indique le degré et le coefficient dominant.",
+    "responseType": "Développement",
+    "rubric": "12 pts résultat 3x²−12x+10, 4 pts degré 2, 4 pts coefficient dominant 3."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Académie de Rabat (2023). Thème: equations systemes.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Académie de Rabat",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Résoudre dans $\\mathbb{R}$ l'équation $2x^2 - 3x + 1 = 0$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Résous (2x−3)/(x+1)=1 en précisant la valeur interdite.",
+    "responseType": "Résolution avec domaine",
+    "rubric": "6 pts x≠−1, 10 pts résolution x=4, 4 pts vérification admissible."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Académie de Rabat (2019). Thème: equations systemes.",
+    "source": "Bac Blanc 2021",
+    "year": 2019,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Résoudre dans $\\mathbb{R}$ l'inéquation $\\frac{2x-1}{x+3} \\geq 0$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Résous (x−2)(x+3) ≤ 0 à l’aide d’un tableau de signes.",
+    "responseType": "Tableau de signes expliqué",
+    "rubric": "6 pts racines −3 et 2, 8 pts signes, 6 pts solution [−3 ; 2]."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Régional 2018, Académie de Rabat (2022). Thème: equations systemes.",
+    "source": "Régional 2018",
+    "year": 2022,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Résoudre par la méthode de Cramer le système: $\\begin{cases} 2x - y = 3 \\\\ 3x + 2y = 8 \\end{cases}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous le système 2x+y=7 et x−y=2, puis vérifie la solution.",
+    "responseType": "Résolution de système",
+    "rubric": "12 pts méthode correcte, 4 pts (x,y)=(3,1), 4 pts vérification."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Ibn Sina (2020). Thème: equations systemes.",
+    "source": "Bac Blanc 2019",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Interpréter géométriquement la solution du système précédent.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous (2x−3)/(x+1)=1 en précisant la valeur interdite.",
+    "responseType": "Résolution avec domaine",
+    "rubric": "6 pts x≠−1, 10 pts résolution x=4, 4 pts vérification admissible."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Académie de Rabat (2021). Thème: equations systemes.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2021,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Le discriminant de $x^2 + x + 1 = 0$ est: A) 3, B) -3, C) 0.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Résous (x−2)(x+3) ≤ 0 à l’aide d’un tableau de signes.",
+    "responseType": "Tableau de signes expliqué",
+    "rubric": "6 pts racines −3 et 2, 8 pts signes, 6 pts solution [−3 ; 2]."
+  },
+  {
+    "courseId": "equations-systemes",
+    "id": "equations-systemes-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Académie de Rabat (2023). Thème: equations systemes.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Académie de Rabat",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer la formule de résolution d'une équation du second degré ax^2+bx+c=0.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Résous le système 2x+y=7 et x−y=2, puis vérifie la solution.",
+    "responseType": "Résolution de système",
+    "rubric": "12 pts méthode correcte, 4 pts (x,y)=(3,1), 4 pts vérification."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Hassan II (2020). Thème: trigonometrie calcul.",
+    "source": "Régional 2022",
+    "year": 2020,
+    "examiner": "Lycée Hassan II",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Convertir en radians l'angle de $75^\\circ$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Convertis 225° en radians et 7π/6 radians en degrés.",
+    "responseType": "Conversions",
+    "rubric": "8 pts 225°=5π/4, 8 pts 7π/6=210°, 4 pts facteurs de conversion."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2023). Thème: trigonometrie calcul.",
+    "source": "Bac Blanc 2019",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Calculer la valeur exacte de $\\cos(\\frac{\\pi}{12})$ sachant que $\\frac{\\pi}{12} = \\frac{\\pi}{3} - \\frac{\\pi}{4}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Calcule exactement cos(π/3)+sin(π/6)−tan(π/4).",
+    "responseType": "Calcul exact",
+    "rubric": "12 pts valeurs remarquables correctes, 6 pts résultat 0, 2 pts écriture exacte."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2023). Thème: trigonometrie calcul.",
+    "source": "Régional 2018",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Sachant que $\\sin(x) = \\frac{1}{3}$ et $x \\in [\\frac{\\pi}{2}, \\pi]$, calculer $\\cos(x)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Si cos α=3/5 et α∈[0,π/2], calcule sin α en justifiant le signe.",
+    "responseType": "Déduction trigonométrique",
+    "rubric": "8 pts sin²+cos²=1, 8 pts sin α=4/5, 4 pts signe positif lié au quadrant."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Ibn Sina (2018). Thème: trigonometrie calcul.",
+    "source": "Régional 2018",
+    "year": 2018,
+    "examiner": "Lycée Ibn Sina",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Simplifier l'expression $A(x) = \\cos^2(x) + \\sin^2(x) - 1$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Convertis 225° en radians et 7π/6 radians en degrés.",
+    "responseType": "Conversions",
+    "rubric": "8 pts 225°=5π/4, 8 pts 7π/6=210°, 4 pts facteurs de conversion."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Ibn Sina (2022). Thème: trigonometrie calcul.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2022,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: La valeur de $\\sin(\\frac{\\pi}{6})$ est: A) $1/2$, B) $\\sqrt{3}/2$, C) $\\sqrt{2}/2$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Calcule exactement cos(π/3)+sin(π/6)−tan(π/4).",
+    "responseType": "Calcul exact",
+    "rubric": "12 pts valeurs remarquables correctes, 6 pts résultat 0, 2 pts écriture exacte."
+  },
+  {
+    "courseId": "trigonometrie-calcul",
+    "id": "trigonometrie-calcul-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Ibn Sina (2021). Thème: trigonometrie calcul.",
+    "source": "Régional 2022",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que $\\cos^2(x) + \\sin^2(x) = 1$ en utilisant le cercle trigonométrique.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Si cos α=3/5 et α∈[0,π/2], calcule sin α en justifiant le signe.",
+    "responseType": "Déduction trigonométrique",
+    "rubric": "8 pts sin²+cos²=1, 8 pts sin α=4/5, 4 pts signe positif lié au quadrant."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2023). Thème: trigonometrie equations.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Résoudre dans $[0, 2\\pi[$ l'équation $\\cos(x) = \\frac{1}{2}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Résous sin x=1/2 sur [0,2π].",
+    "responseType": "Ensemble de solutions",
+    "rubric": "8 pts angles de référence, 8 pts {π/6,5π/6}, 4 pts respect de l’intervalle."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2020). Thème: trigonometrie equations.",
+    "source": "Régional 2018",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Résoudre dans $\\mathbb{R}$ l'équation $\\sin(2x) = \\frac{\\sqrt{3}}{2}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Résous cos(2x)=0 sur [0,π].",
+    "responseType": "Résolution détaillée",
+    "rubric": "8 pts 2x=π/2+kπ, 8 pts x∈{π/4,3π/4}, 4 pts filtrage de l’intervalle."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Hassan II (2023). Thème: trigonometrie equations.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Résoudre dans $[-\\pi, \\pi]$ l'inéquation $\\cos(x) < \\frac{\\sqrt{2}}{2}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous cos x ≥ 0 sur [−π,π].",
+    "responseType": "Intervalle trigonométrique",
+    "rubric": "8 pts lecture du cercle, 8 pts [−π/2,π/2], 4 pts bornes incluses."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Direction Provinciale (2020). Thème: trigonometrie equations.",
+    "source": "Bac Blanc 2019",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Résoudre dans $\\mathbb{R}$ l'équation $\\tan(x) = 1$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Résous sin x=1/2 sur [0,2π].",
+    "responseType": "Ensemble de solutions",
+    "rubric": "8 pts angles de référence, 8 pts {π/6,5π/6}, 4 pts respect de l’intervalle."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Académie de Rabat (2018). Thème: trigonometrie equations.",
+    "source": "Bac Blanc 2019",
+    "year": 2018,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Les solutions de $\\sin(x)=0$ dans $[0, \\pi]$ sont: A) $0$ et $\\pi$, B) $\\pi/2$, C) $\\pi/4$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Résous cos(2x)=0 sur [0,π].",
+    "responseType": "Résolution détaillée",
+    "rubric": "8 pts 2x=π/2+kπ, 8 pts x∈{π/4,3π/4}, 4 pts filtrage de l’intervalle."
+  },
+  {
+    "courseId": "trigonometrie-equations",
+    "id": "trigonometrie-equations-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Académie de Rabat (2019). Thème: trigonometrie equations.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2019,
+    "examiner": "Académie de Rabat",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer la forme générale des solutions de l'équation $\\cos(x) = \\cos(a)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Résous cos x ≥ 0 sur [−π,π].",
+    "responseType": "Intervalle trigonométrique",
+    "rubric": "8 pts lecture du cercle, 8 pts [−π/2,π/2], 4 pts bornes incluses."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Direction Provinciale (2023). Thème: fonctions.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Déterminer le domaine de définition de la fonction $f(x) = \\frac{2x+1}{x^2-4}$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Détermine le domaine de f(x)=√(2x−1)/(x−3).",
+    "responseType": "Étude de conditions",
+    "rubric": "8 pts 2x−1≥0, 6 pts x≠3, 6 pts domaine [1/2,3[∪]3,+∞[."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2021). Thème: fonctions.",
+    "source": "Bac Blanc 2019",
+    "year": 2021,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Étudier la parité de la fonction $g(x) = x^3 - 3x$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Étudie la parité de f(x)=x³−4x sur R.",
+    "responseType": "Démonstration",
+    "rubric": "8 pts calcul f(−x), 8 pts f(−x)=−f(x), 4 pts conclusion fonction impaire."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2023). Thème: fonctions.",
+    "source": "Bac Blanc 2021",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Dresser le tableau de variations de la fonction $h(x) = -2x^2 + 4x + 1$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Pour f(x)=x²−4, calcule l’image de −3 et les antécédents de 5.",
+    "responseType": "Calcul fonctionnel",
+    "rubric": "6 pts f(−3)=5, 10 pts x²=9 donc x=−3 ou 3, 4 pts vocabulaire correct."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Académie de Rabat (2018). Thème: fonctions.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2018,
+    "examiner": "Académie de Rabat",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Tracer la courbe représentative de la fonction $h$ dans un repère orthonormé.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Détermine le domaine de f(x)=√(2x−1)/(x−3).",
+    "responseType": "Étude de conditions",
+    "rubric": "8 pts 2x−1≥0, 6 pts x≠3, 6 pts domaine [1/2,3[∪]3,+∞[."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Académie de Rabat (2019). Thème: fonctions.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2019,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Une fonction impaire admet comme élément de symétrie: A) l'axe des ordonnées, B) l'origine du repère, C) l'axe des abscisses.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Étudie la parité de f(x)=x³−4x sur R.",
+    "responseType": "Démonstration",
+    "rubric": "8 pts calcul f(−x), 8 pts f(−x)=−f(x), 4 pts conclusion fonction impaire."
+  },
+  {
+    "courseId": "fonctions",
+    "id": "fonctions-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Direction Provinciale (2020). Thème: fonctions.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que la fonction $f(x) = x^2$ est décroissante sur $]-\\infty, 0]$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Pour f(x)=x²−4, calcule l’image de −3 et les antécédents de 5.",
+    "responseType": "Calcul fonctionnel",
+    "rubric": "6 pts f(−3)=5, 10 pts x²=9 donc x=−3 ou 3, 4 pts vocabulaire correct."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Régional 2018, Direction Provinciale (2023). Thème: transformations plan.",
+    "source": "Régional 2018",
+    "year": 2023,
+    "examiner": "Direction Provinciale",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Construire l'image du point $A(2, 1)$ par la translation de vecteur $\\vec{u}(-1, 3)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "La translation de vecteur u⃗(−2,3) envoie A(4,−1) sur A′. Calcule A′.",
+    "responseType": "Calcul coordonné",
+    "rubric": "8 pts addition coordonnée par coordonnée, 8 pts A′(2,2), 4 pts notation."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2018). Thème: transformations plan.",
+    "source": "Régional 2018",
+    "year": 2018,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Déterminer les coordonnées de l'image de $B(-1, 0)$ par l'homothétie de centre $O(0,0)$ et de rapport $k=-2$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Trouve l’image P′ de P(5,−2) par la symétrie de centre O(1,1).",
+    "responseType": "Construction analytique",
+    "rubric": "8 pts O milieu de [PP′], 8 pts P′(−3,4), 4 pts vérification des milieux."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Lycée Ibn Sina (2018). Thème: transformations plan.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2018,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Montrer que la symétrie centrale conserve l'alignement des points.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Dans un repère orthonormé, donne l’image de A(2,1) par la rotation de centre O et d’angle +90°.",
+    "responseType": "Calcul et explication",
+    "rubric": "8 pts règle (x,y)↦(−y,x), 8 pts A′(−1,2), 4 pts sens direct explicité."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2023). Thème: transformations plan.",
+    "source": "Bac Blanc 2019",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Soit $s_I$ la symétrie de centre $I$. Quelle est la nature de l'image d'un cercle par $s_I$?",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "La translation de vecteur u⃗(−2,3) envoie A(4,−1) sur A′. Calcule A′.",
+    "responseType": "Calcul coordonné",
+    "rubric": "8 pts addition coordonnée par coordonnée, 8 pts A′(2,2), 4 pts notation."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Hassan II (2022). Thème: transformations plan.",
+    "source": "Régional 2022",
+    "year": 2022,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: L'image d'une droite par une translation est: A) un point, B) une droite parallèle, C) un cercle.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Trouve l’image P′ de P(5,−2) par la symétrie de centre O(1,1).",
+    "responseType": "Construction analytique",
+    "rubric": "8 pts O milieu de [PP′], 8 pts P′(−3,4), 4 pts vérification des milieux."
+  },
+  {
+    "courseId": "transformations-plan",
+    "id": "transformations-plan-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2022, Direction Provinciale (2022). Thème: transformations plan.",
+    "source": "Régional 2022",
+    "year": 2022,
+    "examiner": "Direction Provinciale",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que la composée de deux symétries centrales est une translation.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Dans un repère orthonormé, donne l’image de A(2,1) par la rotation de centre O et d’angle +90°.",
+    "responseType": "Calcul et explication",
+    "rubric": "8 pts règle (x,y)↦(−y,x), 8 pts A′(−1,2), 4 pts sens direct explicité."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Direction Provinciale (2022). Thème: produit scalaire.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2022,
+    "examiner": "Direction Provinciale",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Calculer le produit scalaire $\\vec{u} \\cdot \\vec{v}$ pour $\\vec{u}(2, -1)$ et $\\vec{v}(3, 4)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Calcule u⃗·v⃗ pour u⃗(3,−2) et v⃗(4,5), puis indique si les vecteurs sont orthogonaux.",
+    "responseType": "Calcul et décision",
+    "rubric": "10 pts 3×4+(−2)×5=2, 6 pts non orthogonaux, 4 pts critère cité."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2023). Thème: produit scalaire.",
+    "source": "Régional 2018",
+    "year": 2023,
+    "examiner": "Lycée Hassan II",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "En déduire que les vecteurs $\\vec{u}$ et $\\vec{v}$ ne sont pas orthogonaux.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Sachant ||u⃗||=2, ||v⃗||=3 et u⃗·v⃗=3, calcule cos θ puis θ dans [0,π].",
+    "responseType": "Calcul trigonométrique",
+    "rubric": "8 pts formule, 6 pts cos θ=1/2, 6 pts θ=π/3."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: madrasati.men.gov.ma, Direction Provinciale (2021). Thème: produit scalaire.",
+    "source": "madrasati.men.gov.ma",
+    "year": 2021,
+    "examiner": "Direction Provinciale",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Calculer la norme du vecteur $\\vec{u}(2, -1)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Avec A(0,0), B(4,1), C(−1,4), prouve que ABC est rectangle en A.",
+    "responseType": "Preuve analytique",
+    "rubric": "8 pts AB⃗ et AC⃗, 8 pts produit scalaire nul, 4 pts conclusion d’orthogonalité."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Académie de Rabat (2018). Thème: produit scalaire.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2018,
+    "examiner": "Académie de Rabat",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Soient $A(1, 1)$, $B(-2, 3)$ et $C(4, 5)$. Le triangle $ABC$ est-il rectangle en $A$?",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Calcule u⃗·v⃗ pour u⃗(3,−2) et v⃗(4,5), puis indique si les vecteurs sont orthogonaux.",
+    "responseType": "Calcul et décision",
+    "rubric": "10 pts 3×4+(−2)×5=2, 6 pts non orthogonaux, 4 pts critère cité."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Ibn Sina (2021). Thème: produit scalaire.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Si $\\vec{u} \\cdot \\vec{v} = 0$ et $\\vec{u} \\neq \\vec{0}$, alors: A) $\\vec{v} = \\vec{0}$, B) $\\vec{u}$ et $\\vec{v}$ sont orthogonaux, C) $\\vec{u}$ et $\\vec{v}$ sont colinéaires.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Sachant ||u⃗||=2, ||v⃗||=3 et u⃗·v⃗=3, calcule cos θ puis θ dans [0,π].",
+    "responseType": "Calcul trigonométrique",
+    "rubric": "8 pts formule, 6 pts cos θ=1/2, 6 pts θ=π/3."
+  },
+  {
+    "courseId": "produit-scalaire",
+    "id": "produit-scalaire-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Ibn Sina (2021). Thème: produit scalaire.",
+    "source": "Régional 2018",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer le théorème d'Al-Kashi: $BC^2 = AB^2 + AC^2 - 2AB \\cdot AC \\cos(\\widehat{BAC})$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Avec A(0,0), B(4,1), C(−1,4), prouve que ABC est rectangle en A.",
+    "responseType": "Preuve analytique",
+    "rubric": "8 pts AB⃗ et AC⃗, 8 pts produit scalaire nul, 4 pts conclusion d’orthogonalité."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Ibn Sina (2019). Thème: geometrie espace.",
+    "source": "Régional 2018",
+    "year": 2019,
+    "examiner": "Lycée Ibn Sina",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Dans un cube $ABCDEFGH$, montrer que la droite $(DH)$ est orthogonale au plan $(ABC)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Dans un cube ABCDEFGH, donne une droite parallèle à (AB), une droite perpendiculaire à (AB) et une droite gauche à (AB). Justifie.",
+    "responseType": "Description géométrique",
+    "rubric": "5 pts par exemple valide (12 pts), 8 pts justifications de parallélisme, orthogonalité et non-coplanarité."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Ibn Sina (2020). Thème: geometrie espace.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Calculer le volume du tétraèdre $ABCD$ sachant que $AB=BC=CD=a$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Dans un cube ABCDEFGH, prouve que (AE) est perpendiculaire au plan (ABCD).",
+    "responseType": "Démonstration spatiale",
+    "rubric": "8 pts AE⊥AB, 8 pts AE⊥AD avec AB et AD sécantes du plan, 4 pts théorème conclu."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Académie de Rabat (2023). Thème: geometrie espace.",
+    "source": "Bac Blanc 2019",
+    "year": 2023,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Montrer que les plans $(ABC)$ et $(EFG)$ sont parallèles.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Dans un prisme ABCDEF de bases ABC et DEF, explique pourquoi les plans (ABC) et (DEF) sont parallèles.",
+    "responseType": "Argumentation géométrique",
+    "rubric": "8 pts deux paires de droites sécantes correspondantes, 8 pts parallélismes cités, 4 pts conclusion sur les plans."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Ibn Sina (2020). Thème: geometrie espace.",
+    "source": "Régional 2022",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Déterminer l'intersection du plan $(AFH)$ avec le plan $(ABC)$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Dans un cube ABCDEFGH, donne une droite parallèle à (AB), une droite perpendiculaire à (AB) et une droite gauche à (AB). Justifie.",
+    "responseType": "Description géométrique",
+    "rubric": "5 pts par exemple valide (12 pts), 8 pts justifications de parallélisme, orthogonalité et non-coplanarité."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Académie de Rabat (2018). Thème: geometrie espace.",
+    "source": "Bac Blanc 2021",
+    "year": 2018,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: Deux droites de l'espace orthogonales à un même plan sont: A) sécantes, B) coplanaires, C) parallèles.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Dans un cube ABCDEFGH, prouve que (AE) est perpendiculaire au plan (ABCD).",
+    "responseType": "Démonstration spatiale",
+    "rubric": "8 pts AE⊥AB, 8 pts AE⊥AD avec AB et AD sécantes du plan, 4 pts théorème conclu."
+  },
+  {
+    "courseId": "geometrie-espace",
+    "id": "geometrie-espace-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Régional 2022, Direction Provinciale (2020). Thème: geometrie espace.",
+    "source": "Régional 2022",
+    "year": 2020,
+    "examiner": "Direction Provinciale",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer que si une droite est orthogonale à deux droites sécantes d'un plan, elle est orthogonale à ce plan.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Dans un prisme ABCDEF de bases ABC et DEF, explique pourquoi les plans (ABC) et (DEF) sont parallèles.",
+    "responseType": "Argumentation géométrique",
+    "rubric": "8 pts deux paires de droites sécantes correspondantes, 8 pts parallélismes cités, 4 pts conclusion sur les plans."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-1",
+    "title": "Exercice 1",
+    "context": "Extrait de l'examen: Régional 2022, Lycée Ibn Sina (2023). Thème: statistiques.",
+    "source": "Régional 2022",
+    "year": 2023,
+    "examiner": "Lycée Ibn Sina",
+    "type": "probleme",
+    "durationMin": 10,
+    "points": 2,
+    "statement": "Calculer la moyenne de la série statistique suivante: 12, 15, 10, 18, 14.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 1,
+    "prompt": "Les notes 8, 10, 12, 15 ont pour effectifs 2, 3, 4, 1. Calcule la moyenne.",
+    "responseType": "Calcul statistique",
+    "rubric": "8 pts somme pondérée 109, 6 pts effectif 10, 6 pts moyenne 10,9."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-2",
+    "title": "Exercice 2",
+    "context": "Extrait de l'examen: Bac Blanc 2021, Lycée Ibn Sina (2020). Thème: statistiques.",
+    "source": "Bac Blanc 2021",
+    "year": 2020,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 15,
+    "points": 2,
+    "statement": "Déterminer la médiane et l'étendue de cette série.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 2,
+    "prompt": "Pour la série ordonnée 2, 4, 4, 5, 7, 8, 9, 12, détermine médiane, Q1 et Q3 selon la convention du cours.",
+    "responseType": "Calcul d’indicateurs",
+    "rubric": "8 pts médiane 6, 6 pts Q1=4, 6 pts Q3=8, avec rangs expliqués."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-3",
+    "title": "Exercice 3",
+    "context": "Extrait de l'examen: taalimtice.men.gov.ma, Lycée Ibn Sina (2021). Thème: statistiques.",
+    "source": "taalimtice.men.gov.ma",
+    "year": 2021,
+    "examiner": "Lycée Ibn Sina",
+    "type": "calcul",
+    "durationMin": 20,
+    "points": 3,
+    "statement": "Calculer la variance et l'écart-type de cette série statistique.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Les séries A: 9,10,10,11 et B: 2,10,10,18 ont la même moyenne. Compare leur dispersion sans calculer l’écart-type exact.",
+    "responseType": "Interprétation argumentée",
+    "rubric": "8 pts étendues 2 et 16, 8 pts B plus dispersée, 4 pts lien clair entre éloignement et dispersion."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-4",
+    "title": "Exercice 4",
+    "context": "Extrait de l'examen: Régional 2018, Lycée Hassan II (2021). Thème: statistiques.",
+    "source": "Régional 2018",
+    "year": 2021,
+    "examiner": "Lycée Hassan II",
+    "type": "qcm",
+    "durationMin": 25,
+    "points": 4,
+    "statement": "Dresser le tableau des effectifs cumulés croissants d'une série donnée en classes.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 3,
+    "prompt": "Les notes 8, 10, 12, 15 ont pour effectifs 2, 3, 4, 1. Calcule la moyenne.",
+    "responseType": "Calcul statistique",
+    "rubric": "8 pts somme pondérée 109, 6 pts effectif 10, 6 pts moyenne 10,9."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-5",
+    "title": "Exercice 5",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Académie de Rabat (2023). Thème: statistiques.",
+    "source": "Bac Blanc 2019",
+    "year": 2023,
+    "examiner": "Académie de Rabat",
+    "type": "calcul",
+    "durationMin": 30,
+    "points": 5,
+    "statement": "QCM: L'écart-type est un indicateur de: A) position, B) dispersion, C) symétrie.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 4,
+    "prompt": "Pour la série ordonnée 2, 4, 4, 5, 7, 8, 9, 12, détermine médiane, Q1 et Q3 selon la convention du cours.",
+    "responseType": "Calcul d’indicateurs",
+    "rubric": "8 pts médiane 6, 6 pts Q1=4, 6 pts Q3=8, avec rangs expliqués."
+  },
+  {
+    "courseId": "statistiques",
+    "id": "statistiques-6",
+    "title": "Exercice 6",
+    "context": "Extrait de l'examen: Bac Blanc 2019, Lycée Hassan II (2019). Thème: statistiques.",
+    "source": "Bac Blanc 2019",
+    "year": 2019,
+    "examiner": "Lycée Hassan II",
+    "type": "demonstration",
+    "durationMin": 35,
+    "points": 6,
+    "statement": "Démontrer la formule de König pour le calcul de la variance: $V = \\overline{x^2} - (\\overline{x})^2$.",
+    "hints": [
+      "Lisez bien l'énoncé et identifiez les hypothèses.",
+      "Rappelez-vous des formules du cours correspondantes.",
+      "Vérifiez vos calculs étape par étape."
+    ],
+    "expectedSkills": [
+      "Compréhension du cours",
+      "Calcul algébrique ou géométrique"
+    ],
+    "difficulty": 5,
+    "prompt": "Les séries A: 9,10,10,11 et B: 2,10,10,18 ont la même moyenne. Compare leur dispersion sans calculer l’écart-type exact.",
+    "responseType": "Interprétation argumentée",
+    "rubric": "8 pts étendues 2 et 16, 8 pts B plus dispersée, 4 pts lien clair entre éloignement et dispersion."
+  }
 ]
