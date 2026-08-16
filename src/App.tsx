@@ -102,4 +102,17 @@ function Profile() {
 
 function SourceNote(){return <p className="source-note">Programme structuré à partir du référentiel public de <a href="https://lemathemagicien.ma/lycee/mathematiques-tronc-commun/" target="_blank" rel="noreferrer">Le Mathémagicien — Mathématiques Tronc Commun ↗</a>. <strong>Référence de séquençage pour cette maquette, à valider par l’enseignant.</strong> MathSprint TC est un outil indépendant.</p>}
 
-export default function App(){const {path,go}=useRoute();let page:ReactNode;if(path==='/programme')page=<Curriculum go={go}/>;else if(path==='/calendrier')page=<Calendar/>;else if(path==='/revision')page=<Review go={go}/>;else if(path==='/profil')page=<Profile/>;else if(path==='/admin')page=<AdminPage/>;else if(path.startsWith('/cours/'))page=<CoursePlayer id={decodeURIComponent(path.slice(7))} go={go}/>;else page=<Dashboard go={go}/>;return <Shell path={path} go={go}>{page}</Shell>}
+export default function App(){
+  const {path,go}=useRoute();
+  const {user}=useProgress();
+  const auth = user ? { user } : null;
+  let page:ReactNode;
+  if(path==='/programme')page=<Curriculum go={go}/>;
+  else if(path==='/calendrier')page=<Calendar/>;
+  else if(path==='/revision')page=<Review go={go}/>;
+  else if(path==='/profil')page=<Profile/>;
+  else if(path==='/admin')page=<AdminPage auth={auth}/>;
+  else if(path.startsWith('/cours/'))page=<CoursePlayer id={decodeURIComponent(path.slice(7))} go={go}/>;
+  else page=<Dashboard go={go}/>;
+  return <Shell path={path} go={go}>{page}</Shell>
+}

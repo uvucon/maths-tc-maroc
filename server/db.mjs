@@ -44,6 +44,31 @@ db.exec(`
     createdAt INTEGER
   );
   CREATE INDEX IF NOT EXISTS planned_sessions_user_start ON planned_sessions(userId, start);
+
+  CREATE TABLE IF NOT EXISTS sessions (
+    id TEXT PRIMARY KEY,
+    userId TEXT,
+    durationMin REAL,
+    startedAt INTEGER,
+    courseId TEXT
+  );
+
+  CREATE TABLE IF NOT EXISTS app_settings (
+    key TEXT PRIMARY KEY,
+    value TEXT
+  );
 `)
+
+try {
+  db.exec('ALTER TABLE users ADD COLUMN streak INTEGER DEFAULT 0')
+} catch (e) {
+  // Ignore if column already exists
+}
+
+try {
+  db.exec('ALTER TABLE users ADD COLUMN deletedAt INTEGER')
+} catch (e) {
+  // Ignore if column already exists
+}
 
 export default db

@@ -3,6 +3,7 @@ import { createApp, lateMiddleware } from './server-lib.mjs'
 import db from './server/db.mjs'
 import { createAuthRouter } from './server/auth.mjs'
 import { createCalendarRouter } from './server/calendar.mjs'
+import { createAdminRouter } from './server/admin.mjs'
 import crypto from 'node:crypto'
 
 const port = Number.parseInt(process.env.PORT || '4173', 10)
@@ -20,6 +21,20 @@ const authMiddleware = authRouter.stack.find(layer => layer.route && layer.route
 
 app.use(authRouter)
 app.use('/api/calendar', createCalendarRouter({ db, authMiddleware }))
+
+const requireAdmin = (req, res, next) => {
+  authMiddleware(req, res, () => {
+    const user = db.prepare('SELECT role FROM users WHERE id = ?').get(req.userId)
+    if (user && user.role === 'admin') {
+      req.user = { id: user.id, email: user.email, role: user.role }
+      next()
+    } else {
+      res.status(403).json({ error: 'Forbidden' })
+    }
+  })
+}
+
+app.use('/api/admin', createAdminRouter({ db, requireAdmin }))
 
 lateMiddleware(app)
 
