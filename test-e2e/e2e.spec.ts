@@ -57,15 +57,7 @@ test.describe('E2E Smoke Tests', () => {
   test('Admin Route is safe from unauthorized access', async ({ page }) => {
     await page.goto('/admin');
 
-    await expect(page.locator('h1')).toContainText('Brancher la correction');
-
-    // Fill the token with incorrect data
-    await page.locator('input[placeholder="ADMIN_TOKEN"]').fill('wrong-token');
-
-    // Click the status verification button
-    await page.locator('button:has-text("Vérifier le statut")').click();
-
-    // Admin message should appear with error context
-    await expect(page.locator('.admin-message')).toBeVisible();
+    // Since we are unauthenticated, we should see "Accès refusé"
+    await expect(page.locator('p')).toContainText('Accès refusé');
   });
 });
