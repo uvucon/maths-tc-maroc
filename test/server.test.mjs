@@ -61,7 +61,7 @@ test('catalog exercises have unique IDs and correct mix per chapter', () => {
   const ids = new Set(catalog.map(e => e.id))
   assert.equal(ids.size, 90, 'IDs must be unique')
 
-  const groups = Map.groupBy(catalog, exercise => exercise.courseId)
+  const groups = new Map(); for (const exercise of catalog) { if (!groups.has(exercise.courseId)) groups.set(exercise.courseId, []); groups.get(exercise.courseId).push(exercise); }
   for (const group of groups.values()) {
     const diffs = group.map(e => e.difficulty).sort((a,b)=>a-b)
     const types = group.map(e => e.type)
