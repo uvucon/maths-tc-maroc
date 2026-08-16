@@ -18,7 +18,11 @@ const correction = { score: 14, strengths: ['Bonne méthode'], corrections: ['Ju
 
 test('catalog contains exactly three complete exercises for each of 15 courses', () => {
   const catalog = JSON.parse(readFileSync(new URL('../shared/exercises.json', import.meta.url), 'utf8'))
-  const groups = Map.groupBy(catalog, exercise => exercise.courseId)
+  const groups = new Map()
+  for (const exercise of catalog) {
+    if (!groups.has(exercise.courseId)) groups.set(exercise.courseId, [])
+    groups.get(exercise.courseId).push(exercise)
+  }
   const courseIds = ['ensembles-nombres', 'arithmetique-n', 'calcul-vectoriel', 'projection-plan', 'ordre-r', 'droite-plan', 'polynomes', 'equations-systemes', 'trigonometrie-calcul', 'trigonometrie-equations', 'fonctions', 'transformations-plan', 'produit-scalaire', 'geometrie-espace', 'statistiques']
   assert.equal(catalog.length, 45)
   assert.deepEqual([...groups.keys()], courseIds)
