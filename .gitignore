@@ -7,5 +7,8 @@ vite.config.js
 vite.config.d.ts
 .DS_Store
 .env
+
+data/
+*.db
 playwright-report/
 test-results/
