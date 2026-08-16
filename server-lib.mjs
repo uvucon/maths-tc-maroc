@@ -185,6 +185,10 @@ export function createApp({ config = createRuntimeConfig(), llmClient = createOp
     return res.json(statusFor(config))
   })
 
+  return app
+}
+
+export function lateMiddleware(app) {
   const dist = join(here, 'dist')
   if (existsSync(dist)) {
     app.use(express.static(dist, { index: false, fallthrough: true }))
