@@ -31,6 +31,19 @@ db.exec(`
     updatedAt TEXT,
     FOREIGN KEY(userId) REFERENCES users(id) ON DELETE CASCADE
   );
+
+  CREATE TABLE IF NOT EXISTS planned_sessions (
+    id TEXT PRIMARY KEY,
+    userId TEXT,
+    courseId TEXT,
+    lessonId TEXT,
+    start TEXT,
+    durationMin INTEGER,
+    color TEXT,
+    notes TEXT,
+    createdAt INTEGER
+  );
+  CREATE INDEX IF NOT EXISTS planned_sessions_user_start ON planned_sessions(userId, start);
 `)
 
 export default db

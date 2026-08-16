@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { courses, getCourse, themes, type Course } from './data'
 import { useProgress } from './store'
 import { AdminPage, ExercisePanel } from './exercises'
+import Calendar from './Calendar'
 
 const Icon = ({children}:{children:ReactNode}) => <span aria-hidden="true">{children}</span>
 
@@ -18,7 +19,7 @@ function Logo({go}:{go:(to:string)=>void}) {
 
 function Shell({children,path,go}:{children:ReactNode,path:string,go:(to:string)=>void}) {
   const {xp, progress} = useProgress()
-  const links = [['/','Accueil','⌂'],['/programme','Programme','▦'],['/revision','Révision','↻'],['/profil','Profil','○'],['/admin','Admin','⚙']]
+  const links = [['/','Accueil','⌂'],['/programme','Programme','▦'],['/calendrier','Calendrier','📅'],['/revision','Révision','↻'],['/profil','Profil','○'],['/admin','Admin','⚙']]
   return <div className="app-shell">
     <header><Logo go={go}/><nav>{links.map(([to,label])=><button key={to} className={path===to?'active':''} onClick={()=>go(to)}>{label}</button>)}</nav><div className="header-stats"><span className="streak">{progress.streak} jours</span><span className="xp">{xp} XP</span></div></header>
     <main>{children}</main>
@@ -101,4 +102,4 @@ function Profile() {
 
 function SourceNote(){return <p className="source-note">Programme structuré à partir du référentiel public de <a href="https://lemathemagicien.ma/lycee/mathematiques-tronc-commun/" target="_blank" rel="noreferrer">Le Mathémagicien — Mathématiques Tronc Commun ↗</a>. <strong>Référence de séquençage pour cette maquette, à valider par l’enseignant.</strong> MathSprint TC est un outil indépendant.</p>}
 
-export default function App(){const {path,go}=useRoute();let page:ReactNode;if(path==='/programme')page=<Curriculum go={go}/>;else if(path==='/revision')page=<Review go={go}/>;else if(path==='/profil')page=<Profile/>;else if(path==='/admin')page=<AdminPage/>;else if(path.startsWith('/cours/'))page=<CoursePlayer id={decodeURIComponent(path.slice(7))} go={go}/>;else page=<Dashboard go={go}/>;return <Shell path={path} go={go}>{page}</Shell>}
+export default function App(){const {path,go}=useRoute();let page:ReactNode;if(path==='/programme')page=<Curriculum go={go}/>;else if(path==='/calendrier')page=<Calendar/>;else if(path==='/revision')page=<Review go={go}/>;else if(path==='/profil')page=<Profile/>;else if(path==='/admin')page=<AdminPage/>;else if(path.startsWith('/cours/'))page=<CoursePlayer id={decodeURIComponent(path.slice(7))} go={go}/>;else page=<Dashboard go={go}/>;return <Shell path={path} go={go}>{page}</Shell>}
