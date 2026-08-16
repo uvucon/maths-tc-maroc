@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, useCallback, type ReactNode } from 'react'
 import { courses } from './data'
 
 export type Progress = {
@@ -29,7 +29,7 @@ export function ProgressProvider({children}:{children:ReactNode}) {
     const difference = Math.floor((Date.now() - new Date(p.lastActive).getTime()) / 86400000)
     return {...p,lastActive:today(),streak:difference <= 1 ? p.streak + 1 : 1}
   }
-  const patch = (fn:(p:Progress)=>Progress) => setProgress(p => touch(fn(p)))
+  const patch = useCallback((fn:(p:Progress)=>Progress) => setProgress(p => touch(fn(p))), [])
   const value = useMemo<Store>(() => {
     const xp = progress.completed.length * 120 + Object.values(progress.quizScores).reduce((a,b)=>a+b,0) * 2 + progress.focusSessions * 25 + (progress.diagnosticScore ?? 0) * 3
     return {
@@ -40,7 +40,7 @@ export function ProgressProvider({children}:{children:ReactNode}) {
       setResume:(id)=>patch(p=>p.resumeId===id?p:{...p,resumeId:id}), setDiagnostic:(score)=>patch(p=>({...p,diagnosticScore:score})),
       addFocus:()=>patch(p=>({...p,focusSessions:p.focusSessions+1})), reset:()=>{localStorage.removeItem(KEY);setProgress({...initial,lastActive:today()})}
     }
-  },[progress])
+  }, [progress, patch])
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>
 }
 export function useProgress(){const context=useContext(ProgressContext);if(!context)throw new Error('ProgressProvider requis');return context}
