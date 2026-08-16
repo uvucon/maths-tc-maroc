@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { createApp } from './server-lib.mjs'
+import { createApp, lateMiddleware } from './server-lib.mjs'
 import db from './server/db.mjs'
 import { createAuthRouter } from './server/auth.mjs'
 import crypto from 'node:crypto'
@@ -15,6 +15,8 @@ if (!jwtSecret) {
 }
 
 app.use(createAuthRouter({ db, jwtSecret }))
+
+lateMiddleware(app)
 
 app.listen(port, host, () => {
   console.log(`MathSprint TC disponible sur http://${host}:${port}`)
