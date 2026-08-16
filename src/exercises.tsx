@@ -8,6 +8,15 @@ export type Exercise = {
   prompt: string
   responseType: string
   rubric: string
+  hints: string[]
+  skills: string[]
+  difficulty: number
+  durationMin: number
+  points: number
+  source: string
+  year: number
+  examiner: string
+  reference: string
 }
 
 type Feedback = {
@@ -112,11 +121,26 @@ export function ExercisePanel({ courseId }: { courseId: string }) {
   }
 
   return <section className="exercise-workspace">
-    <div className="exercise-intro"><div><span className="eyebrow">Mise en pratique</span><h2>Choisis, rédige, puis améliore.</h2><p>Trois exercices ciblés. Envoie ta démarche écrite, une photo nette de ta copie, ou les deux : le correcteur compare avec le barème.</p></div><span className="exercise-count">3 exercices</span></div>
+    <div className="exercise-intro"><div><span className="eyebrow">Mise en pratique</span><h2>Choisis, rédige, puis améliore.</h2><p>Six exercices ciblés. Envoie ta démarche écrite, une photo nette de ta copie, ou les deux : le correcteur compare avec le barème.</p></div><span className="exercise-count">6 exercices</span></div>
     <div className="exercise-layout">
       <aside className="exercise-picker" aria-label="Choisir un exercice">{available.map((exercise, index) => <button key={exercise.id} className={selected.id === exercise.id ? 'active' : ''} onClick={() => chooseExercise(exercise.id)}><span>{index + 1}</span><div><b>{exercise.title}</b><small>{exercise.responseType}</small></div></button>)}</aside>
       <form className="exercise-sheet" onSubmit={submit}>
-        <span className="eyebrow">Énoncé</span><h3>{selected.title}</h3><p className="exercise-prompt">{selected.prompt}</p>
+        <span className="eyebrow">Énoncé</span><h3>{selected.title}</h3>
+        <div className="exercise-metadata">
+          <small>Source : {selected.source} ({selected.year}) - {selected.examiner}</small><br/>
+          <small>Référence : {selected.reference}</small><br/>
+          <small>Difficulté : {selected.difficulty}/5 · Durée estimée : {selected.durationMin} min · Points : {selected.points}</small>
+        </div>
+        <p className="exercise-prompt">{selected.prompt}</p>
+        <details className="exercise-hints">
+          <summary>Indices et compétences</summary>
+          <div>
+            <b>Indices :</b>
+            <ul>{selected.hints.map((hint, i) => <li key={i}>{hint}</li>)}</ul>
+            <b>Compétences évaluées :</b>
+            <ul>{selected.skills.map((skill, i) => <li key={i}>{skill}</li>)}</ul>
+          </div>
+        </details>
         <div className="rubric"><b>Barème de correction</b><span>{selected.rubric}</span></div>
         <label className="answer-label" htmlFor={`answer-${selected.id}`}><b>Ta démarche <small>facultative si ta photo est lisible</small></b><span>Ajoute les étapes utiles pour aider la correction.</span></label>
         <textarea id={`answer-${selected.id}`} value={answerText} onChange={event => setAnswerText(event.target.value)} maxLength={20000} rows={9} placeholder="Rédige ta démarche, ou ajoute une photo de ta copie ci-dessous…" disabled={state === 'pending'} />
