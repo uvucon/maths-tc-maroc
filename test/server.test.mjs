@@ -18,14 +18,34 @@ const correction = { score: 14, strengths: ['Bonne méthode'], corrections: ['Ju
 
 test('catalog contains exactly three complete exercises for each of 15 courses', () => {
   const catalog = JSON.parse(readFileSync(new URL('../shared/exercises.json', import.meta.url), 'utf8'))
-  const groups = Map.groupBy(catalog, exercise => exercise.courseId)
+  const groups = new Map()
+  for (const exercise of catalog) {
+    if (!groups.has(exercise.courseId)) groups.set(exercise.courseId, [])
+    groups.get(exercise.courseId).push(exercise)
+  }
   const courseIds = ['ensembles-nombres', 'arithmetique-n', 'calcul-vectoriel', 'projection-plan', 'ordre-r', 'droite-plan', 'polynomes', 'equations-systemes', 'trigonometrie-calcul', 'trigonometrie-equations', 'fonctions', 'transformations-plan', 'produit-scalaire', 'geometrie-espace', 'statistiques']
   assert.equal(catalog.length, 90)
   assert.deepEqual([...groups.keys()], courseIds)
   for (const group of groups.values()) {
     assert.equal(group.length, 6)
     for (const exercise of group) {
-      assert.ok(exercise.id && exercise.prompt && exercise.responseType && exercise.rubric)
+
+      // Check required schema fields
+      assert.ok(exercise.id && exercise.courseId && exercise.title && exercise.type && exercise.source && exercise.examiner && exercise.statement)
+      assert.ok(typeof exercise.year === 'number')
+      assert.ok(typeof exercise.durationMin === 'number')
+      assert.ok(typeof exercise.points === 'number')
+      assert.ok(typeof exercise.difficulty === 'number' && exercise.difficulty >= 1 && exercise.difficulty <= 5)
+
+      // Check hints and skills
+      assert.ok(Array.isArray(exercise.hints) && exercise.hints.length > 0)
+      assert.ok(Array.isArray(exercise.expectedSkills) && exercise.expectedSkills.length > 0)
+
+      // prompt/statement consistency
+      assert.equal(exercise.prompt, exercise.statement)
+      assert.equal(exercise.responseType, exercise.type)
+      assert.ok(exercise.rubric.includes(exercise.points.toString()))
+
       assert.equal(exercise.id.startsWith(`${exercise.courseId}-`), true)
     }
   }
@@ -34,6 +54,41 @@ test('catalog contains exactly three complete exercises for each of 15 courses',
 function configured(overrides = {}) {
   return createRuntimeConfig({ LLM_BASE_URL: 'https://llm.example/v1', LLM_MODEL: 'math-model', LLM_API_KEY: 'secret', ADMIN_TOKEN: 'admin-secret', ...overrides })
 }
+
+
+test('catalog exercises have unique IDs and correct mix per chapter', () => {
+  const catalog = JSON.parse(readFileSync(new URL('../shared/exercises.json', import.meta.url), 'utf8'))
+  const ids = new Set(catalog.map(e => e.id))
+  assert.equal(ids.size, 90, 'IDs must be unique')
+
+  const groups = Map.groupBy(catalog, exercise => exercise.courseId)
+  for (const group of groups.values()) {
+    const diffs = group.map(e => e.difficulty).sort((a,b)=>a-b)
+    const types = group.map(e => e.type)
+
+    // Check difficulty mix: 2x (1-2), 2x (3), 2x (4-5)
+    let low = 0, mid = 0, high = 0
+    for(const d of diffs) {
+      if(d <= 2) low++
+      else if(d === 3) mid++
+      else if(d >= 4) high++
+    }
+    assert.equal(low, 2, 'Should have 2 low difficulty')
+    assert.equal(mid, 2, 'Should have 2 mid difficulty')
+    assert.equal(high, 2, 'Should have 2 high difficulty')
+
+    // Check type mix: >=1 probleme, >=2 calcul, >=1 qcm
+    let prob = 0, calc = 0, qcm = 0
+    for(const t of types) {
+      if(t === 'probleme') prob++
+      if(t === 'calcul') calc++
+      if(t === 'qcm') qcm++
+    }
+    assert.ok(prob >= 1, 'Should have at least 1 probleme')
+    assert.ok(calc >= 2, 'Should have at least 2 calcul')
+    assert.ok(qcm >= 1, 'Should have at least 1 qcm')
+  }
+})
 
 test('config patch validates URL, model and write-only optional key', () => {
   assert.deepEqual(validateConfigPatch({ baseUrl: 'https://host.test/v1/', model: ' modèle ', apiKey: ' replacement ' }), {

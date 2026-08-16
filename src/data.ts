@@ -23,21 +23,21 @@ const raw: Omit<Course, 'order' | 'videoUrl' | 'videoId' | 'videoTitle' | 'theme
 ]
 
 const videos: Record<string, Pick<Course, 'videoId' | 'videoTitle' | 'theme'>> = {
-  'ensembles-nombres': { videoId:'g7rftsj2t8Y', videoTitle:'Cours 1 — Ensembles des nombres / exercices corrigés', theme:'Fondations & raisonnement' },
-  'arithmetique-n': { videoId:'E6ej1J1Cu70', videoTitle:'Arithmétique dans N — Partie 1', theme:'Fondations & raisonnement' },
-  'calcul-vectoriel': { videoId:'QTP2iJuTxtU', videoTitle:'Calcul vectoriel dans le plan — cours', theme:'Géométrie du plan' },
-  'projection-plan': { videoId:'ZLJr_nXc4aM', videoTitle:'La projection dans le plan — résumé', theme:'Géométrie du plan' },
-  'ordre-r': { videoId:'ePWzj1Oqhds', videoTitle:'Ordre dans R — leçon complète', theme:'Fondations & raisonnement' },
-  'droite-plan': { videoId:'Gcqa4ULYFJ8', videoTitle:'La droite dans le plan — résumé complet', theme:'Géométrie du plan' },
-  'polynomes': { videoId:'jCMMjkxl3R0', videoTitle:'Polynômes — cours complet', theme:'Algèbre & résolution' },
-  'equations-systemes': { videoId:'ZWzFp3EEyRc', videoTitle:'Équations, inéquations et systèmes', theme:'Algèbre & résolution' },
-  'trigonometrie-calcul': { videoId:'7sDnyXH23pc', videoTitle:'Trigonométrie — cours et exercices, partie 2', theme:'Trigonométrie & fonctions' },
-  'trigonometrie-equations': { videoId:'37TxRh12rLw', videoTitle:'Équations et inéquations trigonométriques', theme:'Trigonométrie & fonctions' },
-  'fonctions': { videoId:'YF1_lfDpDOk', videoTitle:'Généralités sur les fonctions — partie 1', theme:'Trigonométrie & fonctions' },
-  'transformations-plan': { videoId:'plEl_QEB-Io', videoTitle:'Transformations du plan — exercice guidé', theme:'Géométrie du plan' },
-  'produit-scalaire': { videoId:'qsndM7MXcJc', videoTitle:'Produit scalaire — partie 1', theme:'Géométrie du plan' },
-  'geometrie-espace': { videoId:'B0BsNv7zDXo', videoTitle:'La géométrie dans l’espace — partie 1', theme:'Géométrie dans l’espace & données' },
-  'statistiques': { videoId:'j7fQuVMXIe0', videoTitle:'Cours sur les statistiques — séance 1', theme:'Géométrie dans l’espace & données' },
+  'ensembles-nombres': { videoId:'kL-eMNZiARM', videoTitle:'LE COURS - Les ensembles de nombres', theme:'Fondations & raisonnement' },
+  'arithmetique-n': { videoId:'nZNAehFmrBE', videoTitle:'LE COURS : Arithmétique - Seconde', theme:'Fondations & raisonnement' },
+  'calcul-vectoriel': { videoId:'aSSDBNn_rRI', videoTitle:'LE COURS : Les vecteurs - Seconde', theme:'Géométrie du plan' },
+  'projection-plan': { videoId:'kpgYEs15pSM', videoTitle:'Projection parallèle 2 : théorème de Thalès sous forme vectorielle', theme:'Géométrie du plan' },
+  'ordre-r': { videoId:'mvJy4LVCmRI', videoTitle:'LE COURS : Les intervalles - Seconde', theme:'Fondations & raisonnement' },
+  'droite-plan': { videoId:'d-rUnClmcCY', videoTitle:'LE COURS - Équations de droites - Seconde', theme:'Géométrie du plan' },
+  'polynomes': { videoId:'WVYWdN13kPE', videoTitle:'LE COURS : Fonctions du second degré - Première', theme:'Algèbre & résolution' },
+  'equations-systemes': { videoId:'sWaHnxqUve0', videoTitle:'LE COURS : Systèmes d\'équations - Seconde', theme:'Algèbre & résolution' },
+  'trigonometrie-calcul': { videoId:'wJjb3CSS3cg', videoTitle:'LE COURS : Trigonométrie - Première', theme:'Trigonométrie & fonctions' },
+  'trigonometrie-equations': { videoId:'NlV2zKJtvc8', videoTitle:'Résoudre une équation trigonométrique (2) - Première', theme:'Trigonométrie & fonctions' },
+  'fonctions': { videoId:'i8aYSIidNlk', videoTitle:'LE COURS : Variations des fonctions - Seconde', theme:'Trigonométrie & fonctions' },
+  'transformations-plan': { videoId:'4hACSwA1cn4', videoTitle:'LE COURS : Les transformations Partie 1 - Troisième', theme:'Géométrie du plan' },
+  'produit-scalaire': { videoId:'dII7myZuLvo', videoTitle:'LE COURS : Produit scalaire - Première', theme:'Géométrie du plan' },
+  'geometrie-espace': { videoId:'jc04mAQSi3I', videoTitle:'LE COURS : Droites et plans de l\'espace', theme:'Géométrie dans l’espace & données' },
+  'statistiques': { videoId:'dZ1arqz41Bg', videoTitle:'LE COURS : Statistiques (1) - Seconde', theme:'Géométrie dans l’espace & données' },
 }
 
 export const courses: Course[] = raw.map((course, index) => ({

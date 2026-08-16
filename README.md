@@ -68,6 +68,8 @@ npm test
 npm run typecheck
 npm run lint
 npm run build
+npx playwright install --with-deps chromium
+npm run test:e2e
 ```
 
 Les tests Node utilisent un client LLM injecté et ne réalisent aucun appel réel. Ils couvrent la validation de configuration, les identifiants/réponses, l’indisponibilité sans clé, les pièces jointes, la limitation à 10 requêtes et la protection du statut admin.
