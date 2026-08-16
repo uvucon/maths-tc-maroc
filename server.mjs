@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { createApp, lateMiddleware } from './server-lib.mjs'
 import db from './server/db.mjs'
 import { createAuthRouter } from './server/auth.mjs'
+import { createCalendarRouter } from './server/calendar.mjs'
 import crypto from 'node:crypto'
 
 const port = Number.parseInt(process.env.PORT || '4173', 10)
@@ -14,7 +15,11 @@ if (!jwtSecret) {
   console.warn('⚠️  JWT_SECRET manquant. Utilisation d’un secret aléatoire (les sessions seront perdues au redémarrage).')
 }
 
-app.use(createAuthRouter({ db, jwtSecret }))
+const authRouter = createAuthRouter({ db, jwtSecret })
+const authMiddleware = authRouter.stack.find(layer => layer.route && layer.route.path === '/api/me')?.route.stack[0].handle
+
+app.use(authRouter)
+app.use('/api/calendar', createCalendarRouter({ db, authMiddleware }))
 
 lateMiddleware(app)
 
